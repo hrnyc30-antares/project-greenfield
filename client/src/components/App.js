@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Question from './Question/Question.js'
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <Switch>
         <Route path="/">
           <h1>Hello You!</h1>
+          <Question />
         </Route>
       </Switch>
     </>
