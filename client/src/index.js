@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './components/App';
 import './styles.scss';
+import store from './redux/store';
 
-import { Provider } from 'react-redux';
-import store from './store';
-
-import { BrowserRouter as Router } from 'react-router-dom';
-
-var mountNode = document.getElementById('app');
+const mountNode = document.getElementById('app');
 ReactDOM.render(
   <Provider store={store}>
     <Router>
