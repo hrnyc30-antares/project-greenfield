@@ -13,7 +13,7 @@ const Products = ({ dispatch, loading, products, hasErrors }) => {
     if (loading) return <p>Loading posts...</p>;
     if (hasErrors) return <p>Unable to display posts.</p>;
     return products.map((product) => (
-      <Link to={`/prooduct/${product.id}`} key={product.id}>
+      <Link to={`/product/${product.id}`} key={product.id}>
         <div>
           <h3>{product.name}</h3>
           <p>{product.default_price}</p>
