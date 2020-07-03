@@ -2,6 +2,13 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+
 import Products from './Products';
 import Product from './product/Product';
 
@@ -25,13 +32,25 @@ const theme = createMuiTheme({
 const App = () => (
   <ThemeProvider theme={theme}>
     <header>
-      <div>
-        <h1>S-mart</h1>
-      </div>
       <img
         src="https://edtmlv.pbworks.com/f/1450761659/media-6466-w700-q100%5B1%5D.jpg"
         alt="S-mart logo"
       />
+      <FormControl className="search-control">
+        <InputLabel htmlFor="search-input">Search</InputLabel>
+        <Input
+          id="search-input"
+          type="text"
+          value=""
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
     </header>
     <nav>
       <ul>

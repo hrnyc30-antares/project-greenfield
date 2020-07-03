@@ -1,26 +1,22 @@
-import {
-  GET_PRODUCTS,
-  GET_PRODUCTS_SUCCESS,
-  GET_PRODUCTS_FAILURE,
-} from './types';
+import { GET_PRODUCT, GET_PRODUCT_SUCCESS, GET_PRODUCT_FAILURE } from './types';
 
-export const getProducts = () => ({
-  type: GET_PRODUCTS,
+export const getProduct = () => ({
+  type: GET_PRODUCT,
 });
 
-export const getProductsSuccess = (products) => ({
-  type: GET_PRODUCTS_SUCCESS,
+export const getProductSuccess = (products) => ({
+  type: GET_PRODUCT_SUCCESS,
   payload: products,
 });
 
-export const getProductsFailure = () => ({
-  type: GET_PRODUCTS_FAILURE,
+export const getProductFailure = () => ({
+  type: GET_PRODUCT_FAILURE,
 });
 
-export const fetchProducts = () => (dispatch) => {
-  dispatch(getProducts());
-  fetch('http://18.224.200.47/products/list')
+export const fetchProduct = (productId) => (dispatch) => {
+  dispatch(getProduct());
+  fetch(`http://18.224.200.47/product/${productId}`)
     .then((res) => res.json())
-    .then((data) => dispatch(getProductsSuccess(data)))
-    .catch((err) => dispatch(getProductsFailure()));
+    .then((data) => dispatch(getProductSuccess(data)))
+    .catch((err) => dispatch(getProductFailure()));
 };

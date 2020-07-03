@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchProducts } from '../redux/actions/productActions';
+import { fetchProducts } from '../redux/actions/productsActions';
 
 const Products = ({ dispatch, loading, products, hasErrors }) => {
   useEffect(() => {

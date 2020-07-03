@@ -21,8 +21,7 @@ body {
 #app {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
   height: 100vh;
   color: $dark-color;
   font-family: $font-sanserif;
@@ -39,18 +38,17 @@ body {
   }
 
   header {
-    h1 {
-      background-color: $primary-color;
-      color: $secondary-color;
-      text-shadow: 2px 2px $dark-color;
-      text-align: center;
-      margin: 0;
-      padding: 5px;
-      font-family: $font-logo;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     img {
-      width: 200px;
+      height: 100px;
+      padding: 10px 20px;
+    }
+
+    .search-control {
+      margin-right: 30px;
     }
   }
 
