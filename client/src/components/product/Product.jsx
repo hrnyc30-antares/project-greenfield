@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ProductOverview from './overview/ProductOverview';
+import ProductReviews from './reviews/ProductReviews';
 
 const Product = () => (
   <div className="content">
@@ -8,7 +9,9 @@ const Product = () => (
       <ProductOverview />
     </section>
     <section></section>
-    <section></section>
+    <section>
+      <ProductReviews />
+    </section>
   </div>
 );
 
