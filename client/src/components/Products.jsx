@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,8 @@ const Products = ({ dispatch, loading, products, hasErrors }) => {
   }, [dispatch]);
 
   const renderProducts = () => {
-    if (loading) return <p>Loading posts...</p>;
-    if (hasErrors) return <p>Unable to display posts.</p>;
+    if (loading) return <p>Loading products...</p>;
+    if (hasErrors) return <p>Unable to display products.</p>;
     return products.map((product) => (
       <Link to={`/product/${product.id}`} key={product.id}>
         <div>
@@ -31,6 +31,7 @@ const Products = ({ dispatch, loading, products, hasErrors }) => {
 };
 
 Products.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   hasErrors: PropTypes.bool.isRequired,
@@ -38,7 +39,7 @@ Products.propTypes = {
 
 const mapStateToProps = (state) => ({
   // key comes from reducers/index.js
-  // value comes from reducers/productReducer.js
+  // value comes from reducers/productsReducer.js
   loading: state.products.loading,
   products: state.products.products,
   hasErrors: state.products.hasErrors,

@@ -15,15 +15,15 @@ import Product from './product/Product';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#339999',
-      main: '#008080',
-      dark: '#005959',
+      light: '#339ed3',
+      main: '#0086c8',
+      dark: '#005d8c',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#35effc',
-      main: '#03ebfc',
-      dark: '#008080',
+      light: '#bd344c',
+      main: '#ad0220',
+      dark: '#790116',
       contrastText: '#18162c',
     },
   },

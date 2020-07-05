@@ -5,22 +5,18 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  product: {}
-  styles - empty array
-  currentStyle - empty object
-  photos - empty array
-  currentPhoto - empty object
-  loading: false,
+  product: {},
+  loading: true,
   hasErrors: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_PRODUCTS:
+    case GET_PRODUCT:
       return { ...state, loading: true };
-    case GET_PRODUCTS_SUCCESS:
-      return { products: action.payload, loading: false, hasErrors: false };
-    case GET_PRODUCTS_FAILURE:
+    case GET_PRODUCT_SUCCESS:
+      return { product: action.payload, loading: false, hasErrors: false };
+    case GET_PRODUCT_FAILURE:
       return { ...state, loading: false, hasErrors: true };
     default:
       return state;

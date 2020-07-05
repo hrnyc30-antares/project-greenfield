@@ -1,8 +1,10 @@
+@import 'scss/_mixins';
 @import url('https://fonts.googleapis.com/css2?family=Bitter&family=Montserrat+Subrayada:wght@700&family=Ubuntu&display=swap');
 
-$primary-color: #008080;
-$secondary-color: #03ebfc;
+$primary-color: #0086c8;
+$secondary-color: #ad0220;
 $dark-color: #000000;
+$light-color: #fdbd00;
 
 $font-serif: 'Bitter', 'Times New Roman', serif;
 $font-sanserif: 'Ubuntu', Helvetica, Arial, sans-serif;
@@ -14,7 +16,7 @@ body {
 }
 
 .dark {
-  color: $secondary-color;
+  color: $light-color;
   background-color: $dark-color;
 }
 
@@ -38,6 +40,7 @@ body {
   }
 
   header {
+    background-color: $primary-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -54,11 +57,10 @@ body {
 
   nav {
     width: 100%;
-    color: $secondary-color;
-    background-color: $dark-color;
+    background-color: $light-color;
 
     a {
-      color: $secondary-color;
+      color: $primary-color;
     }
     li {
       padding: 0 10px;
@@ -67,7 +69,7 @@ body {
   }
 
   section {
-    margin: 30px;
+    margin: 15px;
   }
 
   .form-date {
@@ -78,15 +80,93 @@ body {
     }
   }
 
+  .product-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .product-media {
+      margin: 15px 0;
+    }
+
+    .product-info-main {
+      .product-addForm {
+        margin-bottom: 30px;
+
+        .product-info-price {
+          margin: 20px 0;
+        }
+
+        .product-swatch-style {
+          margin: 20px 0;
+
+          img {
+            border: 1px solid #000000;
+            border-radius: 50%;
+            height: 75px;
+            width: 75px;
+          }
+        }
+
+        .product-dropdowns {
+          margin: 20px 0;
+        }
+      }
+    }
+  }
+
+  .product-additional {
+    display: flex;
+    flex-wrap: wrap;
+
+    .product-features {
+      ul {
+        list-style: none;
+
+        li:before {
+          content: '\2714';
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
   footer {
     width: 100%;
     text-align: center;
     height: 50px;
     background-color: $primary-color;
 
-    li {
-      padding: 0 10px;
-      display: inline-block;
+    ul {
+      padding: 0;
+
+      li {
+        padding: 0 10px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@include md {
+  #app {
+    .product-main {
+      .product-media {
+        padding-right: 20px;
+        width: 57%;
+      }
+
+      .product-info-main {
+        width: 40%;
+      }
+    }
+
+    .product-additional {
+      .product-description {
+        border-right: 1px solid #000000;
+        padding-right: 20px;
+        width: 75%;
+      }
     }
   }
 }

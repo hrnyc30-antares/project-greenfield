@@ -4,28 +4,28 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Overview from './overview/Overview';
-import Images from './overview/Images';
-import Details from './overview/Details';
 import { fetchProduct } from '../../redux/actions/productActions';
+import { fetchStyles } from '../../redux/actions/stylesActions';
 
-const Product = ({ dispatch, loading, hasErrors }) => {
+const Product = ({ dispatch }) => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchProduct(id));
+    dispatch(fetchStyles(id));
   });
   return (
     <div className="content">
       <section>
         <Overview />
       </section>
-      <section>
-        <Images />
-      </section>
-      <section>
-        <Details />
-      </section>
+      <section>{/* Q&A */}</section>
+      <section>{/* Ratings */}</section>
     </div>
   );
 };
 
-export default Product;
+Product.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect(null, null)(Product);

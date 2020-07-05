@@ -1,13 +1,13 @@
 import React from 'react';
 
+// import Images from './Images';
 import Details from './Details';
-import Images from './Images';
 import Description from './Description';
 
 const Overview = () => (
   <div>
-    <div>
-      <Images />
+    <div className="product-main">
+      <div className="product-media">{/* <Images /> */}</div>
 
       <Details />
     </div>
