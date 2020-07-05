@@ -2,21 +2,28 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+
 import Products from './Products';
 import Product from './product/Product';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#339999',
-      main: '#008080',
-      dark: '#005959',
+      light: '#339ed3',
+      main: '#0086c8',
+      dark: '#005d8c',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#35effc',
-      main: '#03ebfc',
-      dark: '#008080',
+      light: '#bd344c',
+      main: '#ad0220',
+      dark: '#790116',
       contrastText: '#18162c',
     },
   },
@@ -25,13 +32,25 @@ const theme = createMuiTheme({
 const App = () => (
   <ThemeProvider theme={theme}>
     <header>
-      <div>
-        <h1>S-mart</h1>
-      </div>
       <img
         src="https://edtmlv.pbworks.com/f/1450761659/media-6466-w700-q100%5B1%5D.jpg"
         alt="S-mart logo"
       />
+      <FormControl className="search-control">
+        <InputLabel htmlFor="search-input">Search</InputLabel>
+        <Input
+          id="search-input"
+          type="text"
+          value=""
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
     </header>
     <nav>
       <ul>
