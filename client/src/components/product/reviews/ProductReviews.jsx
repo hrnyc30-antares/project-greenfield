@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchReviews } from '../../../redux/actions/reviewActions';
 import TileList from '../../common/tileList/TileList';
 import reviews from '../../../redux/reducers/reviews';
+import ProductRatings from './ProductRatings';
 
 const ProductReviews = ({ dispatch, loading, reviews, hasErrors }) => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const ProductReviews = ({ dispatch, loading, reviews, hasErrors }) => {
 
   return (
     <div>
+      <ProductRatings/>
       <h2> Product Reviews </h2>
       {renderReviews()}
     </div>

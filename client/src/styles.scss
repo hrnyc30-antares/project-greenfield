@@ -92,3 +92,17 @@ body {
     }
   }
 }
+
+
+.ratings-wrapper {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  background-color: $primary-color;
+  color: blue($color: #000000);
+
+  .average-rating {
+    background-color: brown;
+  }
+
+
+}
