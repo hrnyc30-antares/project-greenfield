@@ -9,6 +9,8 @@ import { fetchStyles } from '../../redux/actions/stylesActions';
 import { fetchAnswers } from '../../redux/actions/answersActions'
 import {fetchQuestions} from '../../redux/actions/questionActions'
 
+import ProductReviews from './reviews/ProductReviews';
+
 const Product = ({ dispatch }) => {
   const { id } = useParams();
   useEffect(() => {
@@ -22,8 +24,10 @@ const Product = ({ dispatch }) => {
       <section>
         <Overview />
       </section>
-      <section><ProductQA/></section>
-      <section>{/* Ratings */}</section>
+      <section>{/* Q&A */}</section>
+      <section>
+        <ProductReviews/>
+      </section>
     </div>
   );
 };

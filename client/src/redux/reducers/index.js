@@ -6,6 +6,7 @@ import styles from './styles';
 import reviews from './reviews';
 import answers from './answers';
 import questions from './questions';
+import ratings from './ratings';
 
 export default combineReducers({
   products,
@@ -14,4 +15,5 @@ export default combineReducers({
   reviews,
   answers,
   questions,
+  ratings,
 });

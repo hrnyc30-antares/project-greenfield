@@ -87,6 +87,23 @@ body {
 
     .product-media {
       margin: 15px 0;
+      position: relative;
+
+      .product-image {
+        img {
+          width: 100%;
+        }
+      }
+
+      .product-image-thumbnails {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        img {
+          width: 60px;
+        }
+      }
     }
 
     .product-info-main {
@@ -95,6 +112,15 @@ body {
 
         .product-info-price {
           margin: 20px 0;
+          display: flex;
+
+          .price-original {
+            text-decoration: line-through;
+          }
+          .price-sale {
+            color: red;
+            margin-left: 20px;
+          }
         }
 
         .product-swatch-style {
@@ -169,4 +195,74 @@ body {
       }
     }
   }
+}
+
+
+
+.ratings-reviews {
+  display:grid;
+  grid-template-columns: 300px 700px
+
+}
+
+.ratings-wrapper {
+  display: grid;
+  grid-template-columns: 50px 200px;
+
+  .average-rating {
+    display: inline;
+    margin: 0;
+    font-size: 250%;
+    text-align: center;
+    
+  }
+
+
+}
+
+
+.ratings-breakdown {
+  .rating-amount {
+    display: inline-block;
+    margin: 10px;
+  }
+  .ratings-bar {
+    display: inline-block;
+  }
+}
+
+.percentage-recommended {
+  color : grey;
+  size: 12px;
+  margin-bottom:15px;
+}
+
+.top-tile {
+  display: grid;
+  grid-template-columns: auto auto;
+
+
+  .user-name {
+    text-align: right;
+    margin-top: 10px;
+  }
+}
+
+.line-break {
+  display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0.5em 1em;
+    padding: 0;
+}
+
+.helpful {
+  margin-top: 15px;
+  font-size: 12px
+}
+
+.list-buttons-wrapper {
+  margin: auto;
+  text-align: center;
 }
