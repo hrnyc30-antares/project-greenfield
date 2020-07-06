@@ -10,12 +10,8 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --watch --mode development",
     "build-prod": "webpack -p --mode production",
-<<<<<<< HEAD
-    "test": "jest --coverage",
-=======
     "test": "jest",
     "test:coverage": "jest --coverage",
->>>>>>> 6b311aeacceeca57d730dbfb49d46065e2784040
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "lint": "eslint \"src/**/*.js\" "
