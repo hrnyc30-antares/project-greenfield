@@ -30,8 +30,6 @@ const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
     const total = totalRatings(allRatings);
     const ratingsPercentage = percentOfWhole(allRatings, total);
     const recommendPercentage = percentOfWhole([meta.recommended['1']], total)
-    console.log('this is recooment percentage', recommendPercentage)
-    console.log(meta)
 
     return (
       <>
@@ -40,7 +38,7 @@ const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
           {recommendPercentage[0]}% of reviews recommend this product
         </div>
         {ratingsPercentage.map((percentage, i) => {
-          return (<RatingsBars value={percentage} rating={5 - i}/>)
+          return (<RatingsBars value={percentage} rating={5 - i} key={i}/>)
         })}
       </>
     )

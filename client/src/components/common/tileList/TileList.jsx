@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TileList = ({reviews, questions}) => {
-  console.log('this is in tilelist reviews -> ', reviews);
 
   const renderList = () => {
     if (reviews) {
