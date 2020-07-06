@@ -15,3 +15,20 @@ export const getAverage = (rate) => {
   let result = total/count;
   return Math.floor(result * 10) / 10;
 }
+
+
+export const percentOfWhole = (ratings, total) => {
+
+  let newRatings = ratings.map(item => {
+    return Math.round(item/total * 100)
+  })
+ 
+  return newRatings;
+}
+
+
+export const totalRatings = (ratings) => {
+  let total = 0
+  ratings.forEach(item => total += item);
+  return total;
+}

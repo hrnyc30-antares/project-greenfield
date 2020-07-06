@@ -7,6 +7,8 @@ import Overview from './overview/Overview';
 import { fetchProduct } from '../../redux/actions/productActions';
 import { fetchStyles } from '../../redux/actions/stylesActions';
 
+import ProductReviews from './reviews/ProductReviews';
+
 const Product = ({ dispatch }) => {
   const { id } = useParams();
   useEffect(() => {
@@ -19,7 +21,9 @@ const Product = ({ dispatch }) => {
         <Overview />
       </section>
       <section>{/* Q&A */}</section>
-      <section>{/* Ratings */}</section>
+      <section>
+        <ProductReviews/>
+      </section>
     </div>
   );
 };

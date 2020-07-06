@@ -172,15 +172,41 @@ body {
 }
 
 
+
+.ratings-reviews {
+  display:grid;
+  grid-template-columns: 500px 500px
+
+}
+
 .ratings-wrapper {
   display: grid;
-  grid-template-columns: 200px 200px;
-  background-color: $primary-color;
-  color: blue($color: #000000);
+  grid-template-columns: 50px 200px;
 
   .average-rating {
-    background-color: brown;
+    display: inline;
+    margin: 0;
+    font-size: 250%;
+    text-align: center;
+    
   }
 
 
+}
+
+
+.ratings-breakdown {
+  .rating-amount {
+    display: inline-block;
+    margin: 10px;
+  }
+  .ratings-bar {
+    display: inline-block;
+  }
+}
+
+.percentage-recommended {
+  color : grey;
+  size: 12px;
+  margin-bottom:15px;
 }

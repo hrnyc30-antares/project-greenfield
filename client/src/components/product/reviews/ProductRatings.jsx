@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { fetchReviewsMeta } from '../../../redux/actions/ratingActions';
 // import TileList from '../../common/tileList/TileList';
 import ratings from '../../../redux/reducers/ratings';
-import { getAverage } from './ReviewHelpers';
-import StarRatings from './StarRatings'
+import { getAverage, percentOfWhole, totalRatings } from './ReviewHelpers';
+import StarRatings from './StarRatings';
+import RatingsBars from './RatingsBars';
 
 const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
 
@@ -24,37 +25,31 @@ const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
         '2': two = 0, 
         '1': one = 0} = meta.ratings;
 
-    const averageRating = getAverage(meta.ratings)
+    const averageRating = getAverage(meta.ratings);
+    const allRatings = [five, four, three, two, one];
+    const total = totalRatings(allRatings);
+    const ratingsPercentage = percentOfWhole(allRatings, total);
+    const recommendPercentage = percentOfWhole([meta.recommended['1']], total)
+    console.log('this is recooment percentage', recommendPercentage)
+    console.log(meta)
 
     return (
       <>
-      <div className="ratings-wrapper">
-        <div className="average-rating">
-          This is average: {averageRating}
-        </div>
-        <div className="average-rating-stars">
         <StarRatings value={averageRating}/>
+        <div className="percentage-recommended"> 
+          {recommendPercentage[0]}% of reviews recommend this product
         </div>
-      </div>
-      <div>
-        5 stars : {five} 
-        <br></br>
-        4 stars : {four} 
-        <br></br>
-        3 stars : {three} 
-        <br></br>
-        2 stars : {two} 
-        <br></br>
-        1 star : {one}
-      </div>
-    </>
+        {ratingsPercentage.map((percentage, i) => {
+          return (<RatingsBars value={percentage} rating={5 - i}/>)
+        })}
+      </>
     )
   }
 
 
   return (
     <div>
-      <h2> Product Ratings </h2>
+      <h2>Ratings & Reveiws</h2>
       {renderReviews()}
     </div>
   )

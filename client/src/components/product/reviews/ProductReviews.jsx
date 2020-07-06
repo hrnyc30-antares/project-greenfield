@@ -21,10 +21,13 @@ const ProductReviews = ({ dispatch, loading, reviews, hasErrors }) => {
   }
 
   return (
-    <div>
-      <ProductRatings/>
-      <h2> Product Reviews </h2>
-      {renderReviews()}
+    <div className='ratings-reviews'>
+      <div className="product-ratings">
+        <ProductRatings/>
+      </div>
+      <div>
+        {renderReviews()}
+      </div>
     </div>
   )
 
