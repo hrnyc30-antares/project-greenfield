@@ -87,6 +87,23 @@ body {
 
     .product-media {
       margin: 15px 0;
+      position: relative;
+
+      .product-image {
+        img {
+          width: 100%;
+        }
+      }
+
+      .product-image-thumbnails {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        img {
+          width: 60px;
+        }
+      }
     }
 
     .product-info-main {
@@ -95,6 +112,15 @@ body {
 
         .product-info-price {
           margin: 20px 0;
+          display: flex;
+
+          .price-original {
+            text-decoration: line-through;
+          }
+          .price-sale {
+            color: red;
+            margin-left: 20px;
+          }
         }
 
         .product-swatch-style {
