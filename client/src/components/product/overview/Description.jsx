@@ -42,9 +42,6 @@ Description.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  // key comes from reducers/index.js
-  // value comes from reducers/productReducer.js
-  dispatch: PropTypes.func.isRequired,
   loading: state.product.loading,
   product: state.product.product,
   hasErrors: state.product.hasErrors,

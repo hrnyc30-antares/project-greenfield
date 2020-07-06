@@ -25,13 +25,12 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
 
   const classes = useStyles();
 
-  const renderSizes = () => {
-    return Object.keys(currentStyle.skus).map((size) => (
+  const renderSizes = () =>
+    Object.keys(currentStyle.skus).map((size) => (
       <MenuItem value={size} key={`size_${size}`}>
         {size}
       </MenuItem>
     ));
-  };
 
   const handleSizeChange = () => {};
 
@@ -64,10 +63,10 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
         {currentStyle.sale_price === '0' ? (
           <div className="price-regular">${currentStyle.original_price}</div>
         ) : (
-          <div className="price-original">
-            ${currentStyle.original_price}
+          <>
+            <div className="price-original">${currentStyle.original_price}</div>
             <span className="price-sale">${currentStyle.sale_price}</span>
-          </div>
+          </>
         )}
       </div>
       <div className="product-swatch-style">
@@ -77,7 +76,7 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
       </div>
       <div className="product-dropdowns">
         <Grid container spaceing={1}>
-          <Grid className="product-size" container xs={8}>
+          <Grid className="product-size" item xs={8}>
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel htmlFor="size-select">Select Size</InputLabel>
               <Select
@@ -91,7 +90,7 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid className="product-qty" container xs={4}>
+          <Grid className="product-qty" item xs={4}>
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel htmlFor="qty-select">Qty</InputLabel>
               <Select
@@ -109,7 +108,7 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
       </div>
       <div className="product-options-button">
         <Button variant="contained" color="primary">
-          Primary
+          Add to Bag
         </Button>
       </div>
     </div>
@@ -132,8 +131,6 @@ Styles.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  // key comes from reducers/index.js
-  // value comes from reducers/productReducer.js
   loading: state.styles.loading,
   styles: state.styles.styles,
   currentStyle: state.styles.currentStyle,
