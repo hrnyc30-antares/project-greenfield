@@ -11,7 +11,6 @@
     "build-dev": "webpack -d --watch --mode development",
     "build-prod": "webpack -p --mode production",
     "test": "jest",
-    "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll",
     "lint": "eslint \"src/**/*.js\" "
   },
