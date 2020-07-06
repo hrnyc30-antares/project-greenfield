@@ -175,7 +175,7 @@ body {
 
 .ratings-reviews {
   display:grid;
-  grid-template-columns: 500px 500px
+  grid-template-columns: 300px 700px
 
 }
 
@@ -209,4 +209,34 @@ body {
   color : grey;
   size: 12px;
   margin-bottom:15px;
+}
+
+.top-tile {
+  display: grid;
+  grid-template-columns: auto auto;
+
+
+  .user-name {
+    text-align: right;
+    margin-top: 10px;
+  }
+}
+
+.line-break {
+  display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0.5em 1em;
+    padding: 0;
+}
+
+.helpful {
+  margin-top: 15px;
+  font-size: 12px
+}
+
+.list-buttons-wrapper {
+  margin: auto;
+  text-align: center;
 }
