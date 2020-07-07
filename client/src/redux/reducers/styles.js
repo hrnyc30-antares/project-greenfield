@@ -2,6 +2,7 @@ import {
   GET_STYLES,
   GET_STYLES_SUCCESS,
   GET_STYLES_FAILURE,
+  UPDATE_CURRENT_STYLE_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +30,12 @@ export default (state = initialState, action) => {
     }
     case GET_STYLES_FAILURE:
       return { ...state, loading: false, hasErrors: true };
+    case UPDATE_CURRENT_STYLE_SUCCESS:
+      return {
+        ...state,
+        currentStyle: action.style,
+        currentPhoto: action.style.photos[0],
+      };
     default:
       return state;
   }
