@@ -24,9 +24,11 @@ const Product = ({ dispatch }) => {
       <section>
         <Overview />
       </section>
-      <section>{/* Q&A */}</section>
       <section>
-        <ProductReviews/>
+        <ProductQA />
+      </section>
+      <section>
+        <ProductReviews />
       </section>
     </div>
   );
