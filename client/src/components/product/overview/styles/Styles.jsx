@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import {
   FormControl,
+  FormHelperText,
   InputLabel,
   Select,
   MenuItem,
@@ -12,6 +13,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { addToCart } from '../../../../redux/actions/cartActions';
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -19,11 +22,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
+const Styles = ({
+  dispatch,
+  loading,
+  styles,
+  currentStyle,
+  hasErrors,
+  cartLoading,
+}) => {
   if (loading) return <p>Loading styles...</p>;
   if (hasErrors) return <p>Unable to display styles.</p>;
 
   const classes = useStyles();
+  const [currentSize, setCurrentSize] = useState('');
+  const [currentQty, setCurrentQty] = useState('');
+  const [sizeOpen, setSizeOpen] = useState(false);
+  const [qtyOpen, setQtyOpen] = useState(false);
+
+  const userToken = 69601;
+
+  const renderQty = (size) => {
+    const quantities = currentStyle.skus[size];
+    return [...Array(quantities).keys()].map((qty) => (
+      <MenuItem value={qty} key={`qty_${qty}`}>
+        {qty}
+      </MenuItem>
+    ));
+  };
 
   const renderSizes = () =>
     Object.keys(currentStyle.skus).map((size) => (
@@ -32,23 +57,56 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
       </MenuItem>
     ));
 
-  const handleSizeChange = () => {};
-
-  const renderQty = () => {
-    // TODO: update qty
-    return [...Array(10).keys()].map((qty) => (
-      <MenuItem value={qty} key={`qty_${qty}`}>
-        {qty}
-      </MenuItem>
-    ));
+  const handleSizeChange = (e) => {
+    setCurrentSize(e.target.value);
+    setCurrentQty('');
   };
 
-  const handleQtyChange = () => {};
+  const handleQtyChange = (e) => {
+    setCurrentQty(e.target.value);
+  };
+
+  const handleSizeClose = () => {
+    setSizeOpen(false);
+  };
+
+  const handleSizeOpen = () => {
+    setSizeOpen(true);
+  };
+
+  const handleQtyClose = () => {
+    setQtyOpen(false);
+  };
+
+  const validateSelects = () => {
+    if (currentSize === '') {
+      setSizeOpen(true);
+      return false;
+    }
+    if (currentQty === '') {
+      setQtyOpen(true);
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleQtyOpen = () => {
+    if (validateSelects()) {
+      setQtyOpen(true);
+    }
+  };
+
+  const handleAddClick = () => {
+    if (validateSelects()) {
+      dispatch(addToCart(userToken, currentStyle.style_id));
+    }
+  };
 
   const stylesList = () =>
     styles.map((style) => (
-      <Grid item xs={3}>
-        <div key={`style_${style.style_id}`} data-style-id={style.style_id}>
+      <Grid item xs={3} key={`style_${style.style_id}`}>
+        <div data-style-id={style.style_id}>
           <img
             src={style.photos[0].thumbnail_url}
             alt={`${style.name} swatch`}
@@ -81,6 +139,10 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
               <InputLabel htmlFor="size-select">Select Size</InputLabel>
               <Select
                 onChange={handleSizeChange}
+                value={currentSize}
+                onClose={handleSizeClose}
+                onOpen={handleSizeOpen}
+                open={sizeOpen}
                 inputProps={{
                   name: 'size',
                   id: 'size-select',
@@ -88,6 +150,7 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
               >
                 {renderSizes()}
               </Select>
+              <FormHelperText>Required</FormHelperText>
             </FormControl>
           </Grid>
           <Grid className="product-qty" item xs={4}>
@@ -95,19 +158,29 @@ const Styles = ({ dispatch, loading, styles, currentStyle, hasErrors }) => {
               <InputLabel htmlFor="qty-select">Qty</InputLabel>
               <Select
                 onChange={handleQtyChange}
+                value={currentQty}
+                onClose={handleQtyClose}
+                onOpen={handleQtyOpen}
+                open={qtyOpen}
                 inputProps={{
                   name: 'qty',
                   id: 'qty-select',
                 }}
               >
-                {renderQty()}
+                {renderQty(currentSize)}
               </Select>
+              <FormHelperText>Required</FormHelperText>
             </FormControl>
           </Grid>
         </Grid>
       </div>
       <div className="product-options-button">
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={cartLoading}
+          onClick={handleAddClick}
+        >
           Add to Bag
         </Button>
       </div>
@@ -128,6 +201,7 @@ Styles.propTypes = {
     ])
   ).isRequired,
   hasErrors: PropTypes.bool.isRequired,
+  cartLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -135,6 +209,8 @@ const mapStateToProps = (state) => ({
   styles: state.styles.styles,
   currentStyle: state.styles.currentStyle,
   hasErrors: state.styles.hasErrors,
+  cart: state.cart.cart,
+  cartLoading: state.cart.loading,
 });
 
 export default connect(mapStateToProps)(Styles);
