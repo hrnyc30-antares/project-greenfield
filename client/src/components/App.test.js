@@ -7,6 +7,6 @@ import App from './App';
 describe('App', () => {
   it('should contain 1 h1 tag', () => {
     let component = shallow(<App />);
-    expect(component.find('h1').length).toEqual(2);
+    expect(component.find('h1').length).toEqual(1);
   });
 });

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Tile } from '../../Common/tileList/Tile';
+import Tile from '../../Common/tileList/Tile';
 
 const DefaultView = ({ questions, questionLoading, questionHasErrors }) => {
   if (questionLoading) return <p>Loading Questions..</p>;
