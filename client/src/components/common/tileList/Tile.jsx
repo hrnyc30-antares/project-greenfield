@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-
+// think about using arugments as a parameter so that you can add more to it, will probably make seller sorting easier
 export const Tile = (widget, data) => {
   const renderTile = () => {
     if (widget === 'qa') {

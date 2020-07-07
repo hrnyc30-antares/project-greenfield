@@ -16,8 +16,7 @@ const Product = ({ dispatch }) => {
   useEffect(() => {
     dispatch(fetchProduct(id));
     dispatch(fetchStyles(id));
-    dispatch(fetchAnswers(id))
-    dispatch(fetchQuestions(id))
+    dispatch(fetchQuestions(id));
   });
   return (
     <div className="content">
