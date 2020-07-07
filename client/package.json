@@ -9,8 +9,9 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --watch --mode development",
-    "build-prod": "webpack -p --mode production",
-    "test": "jest",
+    "build-prod": "webpack -p --watch --mode production",
+    "test": "jest ",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll",
     "lint": "eslint \"src/**/*.js\" "
   },
