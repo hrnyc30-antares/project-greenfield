@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const Images = ({
   dispatch,
   loading,
-  photos,
+  currentStyle,
   currentPhoto,
   product,
   hasErrors,
@@ -14,7 +14,7 @@ const Images = ({
   if (hasErrors) return <p>Unable to display product.</p>;
 
   const renderThumbnails = () =>
-    photos.map((urls, i) => (
+    currentStyle.photos.map((urls, i) => (
       <div key={urls.url}>
         <img src={urls.thumbnail_url} alt={`Product Thumbnail${i}`} />
       </div>
@@ -33,7 +33,14 @@ const Images = ({
 Images.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentStyle: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.array,
+    ])
+  ).isRequired,
   currentPhoto: PropTypes.objectOf(PropTypes.string).isRequired,
   product: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.number])
@@ -44,7 +51,7 @@ Images.propTypes = {
 const mapStateToProps = (state) => ({
   dispatch: PropTypes.func.isRequired,
   loading: state.styles.loading,
-  photos: state.styles.currentStyle.photos,
+  currentStyle: state.styles.currentStyle,
   currentPhoto: state.styles.currentPhoto,
   product: state.product.product,
   hasErrors: state.styles.hasErrors,
