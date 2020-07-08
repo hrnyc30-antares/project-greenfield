@@ -12,8 +12,10 @@ import {
   Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Add } from '@material-ui/icons';
 
 import { addToCart } from '../../../../redux/actions/cartActions';
+import { updateCurrentStyle } from '../../../../redux/actions/stylesActions';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -103,15 +105,19 @@ const Styles = ({
     }
   };
 
+  const handlSwatchClick = (style) => {
+    dispatch(updateCurrentStyle(style));
+  };
+
   const stylesList = () =>
     styles.map((style) => (
       <Grid item xs={3} key={`style_${style.style_id}`}>
-        <div data-style-id={style.style_id}>
+        <button type="button" onClick={() => handlSwatchClick(style)}>
           <img
             src={style.photos[0].thumbnail_url}
             alt={`${style.name} swatch`}
           />
-        </div>
+        </button>
       </Grid>
     ));
 
@@ -175,14 +181,20 @@ const Styles = ({
         </Grid>
       </div>
       <div className="product-options-button">
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={cartLoading}
-          onClick={handleAddClick}
-        >
-          Add to Bag
-        </Button>
+        <Grid container spaceing={1}>
+          <Grid className="product-add" item xs={8}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              endIcon={<Add />}
+              disabled={cartLoading}
+              onClick={handleAddClick}
+            >
+              Add to Bag
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );

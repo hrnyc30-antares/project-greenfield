@@ -1,4 +1,9 @@
-import { GET_STYLES, GET_STYLES_SUCCESS, GET_STYLES_FAILURE } from './types';
+import {
+  GET_STYLES,
+  GET_STYLES_SUCCESS,
+  GET_STYLES_FAILURE,
+  UPDATE_CURRENT_STYLE_SUCCESS,
+} from './types';
 
 export const getStyles = () => ({
   type: GET_STYLES,
@@ -23,3 +28,8 @@ export const fetchStyles = (productId) => (dispatch) => {
     })
     .catch((err) => dispatch(getStylesFailure(err)));
 };
+
+export const updateCurrentStyle = (style) => ({
+  type: UPDATE_CURRENT_STYLE_SUCCESS,
+  style,
+});
