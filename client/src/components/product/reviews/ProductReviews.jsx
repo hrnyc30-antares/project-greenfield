@@ -1,22 +1,18 @@
-import React, {useEffect}from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchReviews } from '../../../redux/actions/reviewActions';
-import TileList from '../../common/tileList/TileList';
+import ReviewsTileList from './ReviewsTileList';
 import reviews from '../../../redux/reducers/reviews';
 import ProductRatings from './ProductRatings';
 
-const ProductReviews = ({ dispatch, loading, reviews, hasErrors }) => {
-  useEffect(() => {
-    dispatch(fetchReviews());
-  }, [dispatch]);
+const ProductReviews = ({ dispatch, loading, reviews, hasErrors, reviewsResultCount }) => {
 
   const renderReviews = () => {
-    if (loading) return <p>Loading posts...</p>;
-    if (hasErrors) return <p>Unable to display posts.</p>;
+    // if (loading) return <p>Loading posts...</p>;
+    // if (hasErrors) return <p>Unable to display posts.</p>;
 
     return (
-        <TileList reviews={reviews} />
+        <ReviewsTileList reviews={reviews} count={reviewsResultCount} />
     )
   }
 
@@ -39,6 +35,7 @@ const mapStateToProps = (state) => ({
   reviews: state.reviews.reviews,
   hasErrors: state.reviews.hasErrors,
   errors: state.reviews.errors,
+  reviewsResultCount: state.reviews.reviewsResultCount,
 })
 
 export default connect(mapStateToProps)(ProductReviews);

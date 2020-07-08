@@ -1,17 +1,18 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 import ReviewTiles from '../../product/reviews/ReviewTiles';
 
 
+
 const TileList = ({reviews, questions}) => {
-  let add = "Question"
-  
+  let add = "Question";
+
+
   const renderList = () => {
     if (reviews) {
       add = "Review"
       return (
         <ul>
-          {/* map over TileComponent here (Reviews) */}
           {reviews.results.map(review => {
             return (<ReviewTiles reviews={review} key={review.review_id}/>);
           })}
@@ -32,8 +33,8 @@ const TileList = ({reviews, questions}) => {
         {renderList()}
       </div>
       <div className="list-buttons-wrapper">
-      <Button variant="contained" size="large">View More</Button>
-      <Button variant="contained" size="large">Add a {add} +</Button>
+        <Button variant="contained" size="large">View More</Button>
+        <Button variant="contained" size="large">Add a {add} +</Button>
       </div>
     </>
   );

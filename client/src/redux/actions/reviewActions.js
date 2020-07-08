@@ -2,6 +2,7 @@ import {
   GET_REVIEWS,
   GET_REVIEWS_SUCCESS,
   GET_REVIEWS_FAILURE,
+  UPDATE_REVIEWS_COUNT,
 } from './types';
 
 export const getReviews = () => ({
@@ -18,10 +19,20 @@ export const getReviewsFailure = (error) => ({
   error,
 });
 
-export const fetchReviews = () => (dispatch) => {
+export const updateCount = (count) => ({
+  type: UPDATE_REVIEWS_COUNT,
+  payload: count,
+})
+
+export const fetchReviews = (count = 2) => (dispatch) => {
   dispatch(getReviews());
-  fetch('http://18.224.200.47/reviews/1/list')
+  fetch(`http://18.224.200.47/reviews/2/list?count=${count}`)
     .then((res) => res.json())
     .then((data) => dispatch(getReviewsSuccess(data)))
     .catch((err) => dispatch(getReviewsFailure(err)));
 };
+
+export const updateReviewCount = (count) => (dispatch) => {
+  dispatch(updateCount(count));
+  console.log('this is the count in UpdateReviewCount action creator', count)
+}
