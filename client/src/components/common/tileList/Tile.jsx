@@ -9,7 +9,10 @@ const Tile = (widget, data) => {
         <li key ={element.question_id}>
           <p>Question:</p>
           <span>{element.question_body}</span>
-          <HelpButton widget="qa" data={element} />
+          <span>
+          <HelpButton widget="qa" data={element} /> | Add Answer
+
+          </span>
           <p>Answers:</p>
           <ul>
             {Object.values(element.answers)
@@ -19,9 +22,10 @@ const Tile = (widget, data) => {
                   const dateFormat = new Date(value.date).toDateString().slice(4, value.date.length);
                   return (
                     <li key={value.id}>
-                      <span>{value.body}</span>
-                      <p>{value.answerer_name}</p>
-                      <span>{dateFormat}</span>
+                      <span>{value.body}, {dateFormat}</span>
+                      <span>
+                      <p> by {value.answerer_name}</p> | <HelpButton widget={'answer'} data={value}/> | Report
+                      </span>
                     </li>
                   );
                 }

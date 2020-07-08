@@ -2,20 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuestions } from '../../../redux/actions/questionActions';
 
-const HelpButton = ({ widget, data }) => {
+const HelpButton = ({ widget, data, update, id}) => {
   const handleClick = (e) => {
       e.preventDefault();
     if (widget === 'qa') {
-      // fetch(`http://18.224.200.47/qa`)
-      console.log(data);
+      fetch(`http://18.224.200.47/qa/question/${data.question_id}/helpful`,{
+        method: 'PUT',
+      })
+      .then(val => update(id))
+      .catch(err => console.log('Helpful update error'))
     }
-    else if (widget === 'answer') {} 
+    else if (widget === 'answer') {
+      fetch(`http://18.224.200.47/qa/answer/${data.id}/helpful`,{
+        method: 'PUT',
+      })
+      .then(val => update(id))
+      .catch(err => console.log('Helpful update error'))
+    } 
     else if (widget === 'reviews') {}
   };
   return (
     <p>
       Helpful?  
-      <a href="" onClick={() => handleClick(event)}>  Yes</a>
+      <a href="" onClick={() => handleClick(event)}>  Yes </a> ({data.question_helpfulness || data.helpfulness})
     </p>
   );
 };
