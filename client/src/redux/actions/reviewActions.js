@@ -24,9 +24,9 @@ export const updateCount = (count) => ({
   payload: count,
 })
 
-export const fetchReviews = (count = 2) => (dispatch) => {
+export const fetchReviews = (count = 2, id) => (dispatch) => {
   dispatch(getReviews());
-  fetch(`http://18.224.200.47/reviews/2/list?count=${count}`)
+  fetch(`http://18.224.200.47/reviews/${id}/list?count=${count}`)
     .then((res) => res.json())
     .then((data) => dispatch(getReviewsSuccess(data)))
     .catch((err) => dispatch(getReviewsFailure(err)));

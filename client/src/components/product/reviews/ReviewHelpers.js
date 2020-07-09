@@ -17,7 +17,8 @@ export const getAverage = (rate) => {
 }
 
 
-export const percentOfWhole = (ratings, total) => {
+export const percentOfWhole = (ratings = [0], total) => {
+  ratings = ratings[0] === undefined ? [0] : ratings;
 
   let newRatings = ratings.map(item => {
     return Math.round(item/total * 100)
