@@ -5,14 +5,14 @@ import ReviewsTileList from './ReviewsTileList';
 import reviews from '../../../redux/reducers/reviews';
 import ProductRatings from './ProductRatings';
 
-const ProductReviews = ({ dispatch, loading, reviews, hasErrors, reviewsResultCount }) => {
+const ProductReviews = ({ dispatch, loading, reviews, hasErrors, reviewsResultCount, product }) => {
 
   const renderReviews = () => {
     // if (loading) return <p>Loading posts...</p>;
     // if (hasErrors) return <p>Unable to display posts.</p>;
 
     return (
-        <ReviewsTileList reviews={reviews} count={reviewsResultCount} />
+        <ReviewsTileList reviews={reviews} count={reviewsResultCount} productId={product.id} />
     )
   }
 
@@ -36,6 +36,7 @@ const mapStateToProps = (state) => ({
   hasErrors: state.reviews.hasErrors,
   errors: state.reviews.errors,
   reviewsResultCount: state.reviews.reviewsResultCount,
+  product: state.product.product,
 })
 
 export default connect(mapStateToProps)(ProductReviews);

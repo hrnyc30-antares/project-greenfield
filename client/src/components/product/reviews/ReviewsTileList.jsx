@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import ReviewTiles from './ReviewTiles';
 import AddReviewModal from './AddReviewModal';
 import { fetchReviews } from '../../../redux/actions/reviewActions';
 
-const TileList = ({dispatch, reviews, loading, hasErrors}) => {
-  //console.log('this is reviews as TileList reloads', reviews);
+const TileList = ({dispatch, reviews, loading, hasErrors, product}) => {
   const [reviewCount, setCount] = useState(2);
+  const { id } = useParams();
 
-  useEffect(() => {
-    //console.log('this is fetch reviews in List component reRendering')
-    dispatch(fetchReviews(reviewCount));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchReviews(reviewCount, product.id));
+  // }, [dispatch]);
 
   const [open, setOpen] = useState(false);
 
   const handleViewMoreClick = () => {
-    dispatch(fetchReviews(reviewCount + 2));
+    dispatch(fetchReviews(reviewCount + 2, id));
     setCount(reviewCount + 2);
   }
-
-  //console.log('this is the count', reviewCount);
-
 
   const handleOpen = () => {
     setOpen(true);
@@ -64,6 +61,7 @@ const mapStateToProps = (state) => ({
   reviews: state.reviews.reviews,
   reviewsResultCount: state.reviews.reviewsResultCount,
   hasErrors: state.reviews.hasErrors,
+  
 });
 
 export default connect(mapStateToProps)(TileList);

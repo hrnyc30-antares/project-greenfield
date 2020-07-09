@@ -10,9 +10,9 @@ import RatingsBars from './RatingsBars';
 
 const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
 
-  useEffect(() => {
-    dispatch(fetchReviewsMeta());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchReviewsMeta());
+  // }, [dispatch]);
 
 
   const renderReviews = () => {
@@ -29,7 +29,7 @@ const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
     const allRatings = [five, four, three, two, one];
     const total = totalRatings(allRatings);
     const ratingsPercentage = percentOfWhole(allRatings, total);
-    const recommendPercentage = percentOfWhole([meta.recommended['1']], total)
+    const recommendPercentage = percentOfWhole([meta.recommended['1']], total);
 
     return (
       <>
