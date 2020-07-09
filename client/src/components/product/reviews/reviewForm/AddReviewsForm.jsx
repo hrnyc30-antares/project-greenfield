@@ -60,7 +60,7 @@ const AddReviewsForm = ({meta}) => {
           value="yes"
           control={<Radio color="primary" />}
           label="Yes"
-          abelPlacement="bottom"
+          labelPlacement="bottom"
         />
         <FormControlLabel
           value="no"
