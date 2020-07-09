@@ -5,23 +5,15 @@ import Rating from '@material-ui/lab/Rating';
 import AddReviewsForm from './reviewForm/AddReviewsForm';
 import { Autorenew } from '@material-ui/icons';
 
-const AddReviewModal = ({handleClose, open}) => {
-
-  function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
+const AddReviewModal = ({handleClose, open, product}) => {
   function getModalStyle() {
-      const top = 25; // was 50 + rand()
-      const left = 25;
-      
-      return {
-          // top: `${top}%`,
-          // left: `${left}%`,
-          // transform: `translate(-${top}%, -${left}%)`,
-          top: `${top}%`,
-          margin:'auto'
-      };
+    const top = 25; 
+    const left = 25;
+
+    return {
+      top: `${top}%`,
+      margin:'auto'
+    };
   }
 
   const useStyles = makeStyles(theme => ({
@@ -55,7 +47,10 @@ const AddReviewModal = ({handleClose, open}) => {
         >
           <div style={modalStyle} className={classes.paper}>
             <h2>Write Your Review</h2>
-            <h3>About the [Product Name]</h3>
+            <h3>
+              About the
+              { ` ${product.name}` }
+            </h3>
             <AddReviewsForm/>
           </div>
         </Modal>

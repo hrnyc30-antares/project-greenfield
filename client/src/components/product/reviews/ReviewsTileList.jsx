@@ -13,7 +13,6 @@ const TileList = ({dispatch, reviews, loading, hasErrors, product}) => {
   // useEffect(() => {
   //   dispatch(fetchReviews(reviewCount, product.id));
   // }, [dispatch]);
-
   const [open, setOpen] = useState(false);
 
   const handleViewMoreClick = () => {
@@ -50,7 +49,7 @@ const TileList = ({dispatch, reviews, loading, hasErrors, product}) => {
       <div className="list-buttons-wrapper">
         <Button onClick={handleViewMoreClick} variant="contained" size="large">View More</Button>
         <Button onClick={handleOpen} variant="contained" size="large">Add a Review +</Button>
-        <AddReviewModal handleClose={handleClose} open={open}/>
+        <AddReviewModal handleClose={handleClose} open={open} product={product}/>
       </div>
     </>
   );
@@ -61,6 +60,7 @@ const mapStateToProps = (state) => ({
   reviews: state.reviews.reviews,
   reviewsResultCount: state.reviews.reviewsResultCount,
   hasErrors: state.reviews.hasErrors,
+  product: state.product.product,
   
 });
 
