@@ -20,7 +20,7 @@ export const getReviewsMetaFailure = (error) => ({
 
 export const fetchReviewsMeta = () => (dispatch) => {
   dispatch(getReviewsMeta());
-  fetch('http://18.224.200.47/reviews/1/meta')
+  fetch('http://18.224.200.47/reviews/4/meta')
     .then((res) => res.json())
     .then((data) => dispatch(getReviewsMetaSuccess(data)))
     .catch((err) => dispatch(getReviewsMetaFailure(err)));
