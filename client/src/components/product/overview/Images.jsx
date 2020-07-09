@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FullscreenIcon } from '@material-ui/icons';
+import { Fullscreen, NavigateBefore, NavigateNext } from '@material-ui/icons';
 
 const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
   if (loading) return <p>Loading product...</p>;
   if (hasErrors) return <p>Unable to display product.</p>;
 
-  // const [currentPhoto, setCurrentPhoto] = useState(currentStyle.photos[0]);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [leftPosition, setLeftPosition] = useState(0);
   const [clientX, setClientX] = useState(0);
   const [deltaX, setDeltaX] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
   const [thumbStartIndex, setThumbStartIndex] = useState(0);
   const [thumbEndIndex, setThumbEndIndex] = useState(0);
+
+  console.log('currentPhotoIndex: ', currentPhotoIndex);
 
   const renderThumbnails = () =>
     currentStyle.photos.map((urls, i) => (
       <button
         type="button"
+        className="product-thumbnail"
         onClick={() => setCurrentPhotoIndex(i)}
         key={urls.url}
       >
         <img
+          className={i === currentPhotoIndex ? 'selected' : ''}
           src={
             urls.thumbnail_url ||
             'https://edtmlv.pbworks.com/f/1450761659/media-6466-w700-q100%5B1%5D.jpg'
@@ -66,9 +70,21 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
     setLeftPosition(0);
   };
 
+  const toggleZoom = () => {
+    setZoomed(!zoomed);
+  };
+
   return (
-    <div className="product-media">
+    <div className={zoomed ? 'product-media expanded' : 'product-media'}>
       <div className="product-image-thumbnails">{renderThumbnails()}</div>
+      {currentPhotoIndex > 0 && (
+        <NavigateBefore
+          className="product-image-before"
+          fontSize="large"
+          color="primary"
+          onClick={() => setCurrentPhotoIndex(currentPhotoIndex - 1)}
+        />
+      )}
       <div className="product-image">
         <img
           src={
@@ -82,6 +98,19 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
           style={{ left: leftPosition }}
         />
       </div>
+      {currentPhotoIndex - 1 < currentStyle.photos.length && (
+        <NavigateNext
+          className="product-image-next"
+          fontSize="large"
+          color="primary"
+          onClick={() => setCurrentPhotoIndex(currentPhotoIndex + 1)}
+        />
+      )}
+      <Fullscreen
+        color="primary"
+        className="product-image-zoom"
+        onClick={toggleZoom}
+      />
       <ol className="product-image-mobile">{renderDots()}</ol>
     </div>
   );
