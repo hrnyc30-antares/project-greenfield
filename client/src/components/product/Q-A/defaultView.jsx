@@ -33,7 +33,7 @@ const DefaultView = ({
       const highestHelpful = questions[questions.length - 1];
       showTwo.push(highestHelpful);
     }
-    if (showTwo.length < 2) {
+    if (showTwo.length < 2 && questions.length > 1) {
       const secHighestHelpful = questions[questions.length - 2];
       showTwo.push(secHighestHelpful);
     }

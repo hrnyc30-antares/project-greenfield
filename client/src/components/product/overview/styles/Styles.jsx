@@ -114,7 +114,10 @@ const Styles = ({
       <Grid item xs={3} key={`style_${style.style_id}`}>
         <button type="button" onClick={() => handlSwatchClick(style)}>
           <img
-            src={style.photos[0].thumbnail_url}
+            src={
+              style.photos[0].thumbnail_url ||
+              'https://edtmlv.pbworks.com/f/1450761659/media-6466-w700-q100%5B1%5D.jpg'
+            }
             alt={`${style.name} swatch`}
           />
         </button>
@@ -140,7 +143,7 @@ const Styles = ({
       </div>
       <div className="product-dropdowns">
         <Grid container spaceing={1}>
-          <Grid className="product-size" item xs={8}>
+          <Grid className="product-size" item xs={7}>
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel htmlFor="size-select">Select Size</InputLabel>
               <Select
