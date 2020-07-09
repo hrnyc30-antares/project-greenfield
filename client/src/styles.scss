@@ -267,3 +267,24 @@ body {
   margin: auto;
   text-align: center;
 }
+
+.reviews-sort {
+  // position: relative;
+  display: grid;
+  grid-template-columns: 15fr 50fr;
+  .reviews-sort-text {
+    // display: inline-block;
+    // position: absolute;
+    // bottom: 0;
+    //float: left;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+  }
+  .reviews-sort-form {
+    // display: inline;
+    // left: 25;
+  }
+}
