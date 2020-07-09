@@ -8,8 +8,10 @@ import reviews from './reviews';
 import answers from './answers';
 import questions from './questions';
 import ratings from './ratings';
+import helpfulIds from './helpful';
 
 export default combineReducers({
+  helpfulIds,
   products,
   product,
   styles,

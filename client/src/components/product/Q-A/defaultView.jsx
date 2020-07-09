@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Tile from '../../Common/tileList/Tile';
+import { setHelpful } from '../../../redux/actions/helpfulAction';
 
-const DefaultView = ({ questions, questionLoading, questionHasErrors }) => {
+const DefaultView = ({
+  questions,
+  questionLoading,
+  questionHasErrors,
+  set,
+}) => {
   if (questionLoading) return <p>Loading Questions..</p>;
   if (questionHasErrors) return <p>Error Loading Questions ..</p>;
   if (questionLoading === false) {
@@ -10,11 +16,16 @@ const DefaultView = ({ questions, questionLoading, questionHasErrors }) => {
 
     // this first iteration is checking for any seller answers
     // if it finds one it will be pushed to the default view array
+    let allIds = [];
     questions.forEach((val) => {
+      allIds.push(val.question_id);
       Object.values(val.answers).forEach((value) => {
-        if (value.answerer_name === 'Seller' && showTwo.length < 2) showTwo.push(val);
+        allIds.push(value.id);
+        if (value.answerer_name === 'Seller' && showTwo.length < 2)
+          showTwo.push(val);
       });
     });
+    set(allIds);
     // if no seller answer or only 1 was found, then it will iterate through the rest of the questions, but sorted by helpfulness
     // it will only be pushed into the default view array if the length is less then 1 or empty
     questions.sort((a, b) => a.question_helpfulness - b.question_helpfulness);
@@ -26,7 +37,7 @@ const DefaultView = ({ questions, questionLoading, questionHasErrors }) => {
       const secHighestHelpful = questions[questions.length - 2];
       showTwo.push(secHighestHelpful);
     }
-    return Tile('qa', showTwo);
+    return <Tile widget='qa' data={showTwo} />;
   }
 };
 
@@ -36,4 +47,8 @@ const mapStateToProps = (state) => ({
   questionLoading: state.questions.loading,
 });
 
-export default connect(mapStateToProps)(DefaultView);
+const mapDispatchToProps = (dispatch) => ({
+  set: (ids) => dispatch(setHelpful(ids)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultView);
