@@ -389,9 +389,18 @@ button {
   display: grid;
   grid-template-columns: auto auto;
 
-  .user-name {
+  .user-and-date-wrapper{
     text-align: right;
-    margin-top: 10px;
+
+    .user-name {
+      margin: 5px;
+      display: inline;
+    }
+  
+    .review-date {
+      margin: 5px;
+      display: inline;
+    }
   }
 }
 
@@ -432,5 +441,27 @@ button {
   .reviews-sort-form {
     // display: inline;
     // left: 25;
+  }
+}
+
+.review-list-image {
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 100px; /* Set a small width */
+  margin: 10px;
+}
+
+.review-list-image:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.reviewer-recommended {
+  display: grid;
+  grid-template-columns: 1fr 22fr;
+  margin-top: 20px;
+
+  .recommend-tag {
+    padding-top: 8px ;
   }
 }
