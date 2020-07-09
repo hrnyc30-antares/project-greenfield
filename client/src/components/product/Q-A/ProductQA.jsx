@@ -7,6 +7,7 @@ import DefaultView from './defaultView'
 const ProductQA = () => {
   const [showList, setshowList] = useState(false)
   
+  
 
   return (
     <div>

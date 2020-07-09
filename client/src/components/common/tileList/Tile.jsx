@@ -1,8 +1,10 @@
 
 import React from 'react';
 import HelpButton from './HelpButton';
+import ReportButton from './ReportButton'
+
 // think about using ...args as a parameter so that you can add more to it, will probably make seller sorting easier
-const Tile = (widget, data) => {
+const Tile = ({widget, data }) => {
   const renderTile = () => {
     if (widget === 'qa') {
       return data.map((element) => (
@@ -10,8 +12,7 @@ const Tile = (widget, data) => {
           <p>Question:</p>
           <span>{element.question_body}</span>
           <span>
-          <HelpButton widget="qa" data={element} /> | Add Answer
-
+          <HelpButton widget="qa" data={element}/> | Add Answer
           </span>
           <p>Answers:</p>
           <ul>
@@ -24,7 +25,7 @@ const Tile = (widget, data) => {
                     <li key={value.id}>
                       <span>{value.body}, {dateFormat}</span>
                       <span>
-                      <p> by {value.answerer_name}</p> | <HelpButton widget={'answer'} data={value}/> | Report
+                      <p> by {value.answerer_name}</p> | <HelpButton widget={'answer'} data={value} /> | <ReportButton widget={'answer'} data={value} />
                       </span>
                     </li>
                   );
@@ -40,5 +41,6 @@ const Tile = (widget, data) => {
   };
   return <ul>{renderTile()}</ul>;
 };
+
 
 export default Tile;
