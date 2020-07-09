@@ -16,7 +16,7 @@ const HelpButton = ({ widget, data, update, id, clicked, helpIds }) => {
       })
         .then(() => {
           update(id);
-          setTimeout(() => clicked(data.question_id), 500);
+          setTimeout(() => clicked(data.question_id), 150);
         })
         .catch((err) => console.log('Helpful update error'));
     } else if (widget === 'answer' && !dataBool) {
@@ -25,7 +25,7 @@ const HelpButton = ({ widget, data, update, id, clicked, helpIds }) => {
       })
         .then(() => {
           update(id);
-          setTimeout(() => clicked(data.id), 500);
+          setTimeout(() => clicked(data.id), 150);
         })
         .catch((err) => console.log('Helpful update error'));
     }
