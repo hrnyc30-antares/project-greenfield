@@ -4,19 +4,21 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReviewTiles from './ReviewTiles';
 import AddReviewModal from './AddReviewModal';
-import { fetchReviews } from '../../../redux/actions/reviewActions';
+import { fetchReviews, updateReviewCount } from '../../../redux/actions/reviewActions';
 
-const TileList = ({dispatch, reviews, loading, hasErrors, product}) => {
+const TileList = ({dispatch, reviews, loading, hasErrors, product, sort}) => {
   const [reviewCount, setCount] = useState(2);
   const { id } = useParams();
 
   // useEffect(() => {
   //   dispatch(fetchReviews(reviewCount, product.id));
   // }, [dispatch]);
+  
   const [open, setOpen] = useState(false);
 
   const handleViewMoreClick = () => {
-    dispatch(fetchReviews(reviewCount + 2, id));
+    dispatch(fetchReviews(reviewCount + 2, id, sort));
+    dispatch(updateReviewCount(reviewCount + 2));
     setCount(reviewCount + 2);
   }
 
@@ -60,6 +62,7 @@ const mapStateToProps = (state) => ({
   reviews: state.reviews.reviews,
   reviewsResultCount: state.reviews.reviewsResultCount,
   hasErrors: state.reviews.hasErrors,
+  sort: state.reviews.sort,
   product: state.product.product,
   
 });
