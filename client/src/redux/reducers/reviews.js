@@ -3,6 +3,7 @@ import {
   GET_REVIEWS_SUCCESS,
   GET_REVIEWS_FAILURE,
   UPDATE_REVIEWS_COUNT,
+  UPDATE_REVIEWS_SORT,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   hasErrors: false,
   error: {},
   reviewsResultCount: 2,
+  sort: 'relevant',
 };
 
 export default (state = initialState, action) => {
@@ -18,12 +20,13 @@ export default (state = initialState, action) => {
     case GET_REVIEWS:
       return { ...state, loading: true };
     case GET_REVIEWS_SUCCESS:
-      return { reviews: action.payload, loading: false, hasErrors: false };
+      return { ...state, reviews: action.payload, loading: false, hasErrors: false };
     case GET_REVIEWS_FAILURE:
       return { ...state, loading: false, hasErrors: true, error: action.error };
     case UPDATE_REVIEWS_COUNT:
-      console.log('updating in reducer', action.payload)
-      return {...state, reviewsResultCount: action.payload}
+      return { ...state, reviewsResultCount: action.payload };
+    case UPDATE_REVIEWS_SORT:
+      return { ...state, sort: action.payload };
     default:
       return state;
   }

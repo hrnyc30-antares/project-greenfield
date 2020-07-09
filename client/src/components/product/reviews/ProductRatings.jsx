@@ -47,7 +47,6 @@ const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
 
   return (
     <div>
-      <h2>Ratings & Reveiws</h2>
       {renderReviews()}
     </div>
   )
