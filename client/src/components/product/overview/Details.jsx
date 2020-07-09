@@ -17,9 +17,9 @@ const Details = ({ loading, product, hasErrors }) => {
       </div>
       <Styles />
       <div className="product-social-links">
-        <Facebook />
-        <Twitter />
-        <Pinterest />
+        <Facebook fontSize="large" />
+        <Twitter fontSize="large" />
+        <Pinterest fontSize="large" />
       </div>
     </div>
   );
