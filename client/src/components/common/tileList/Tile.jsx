@@ -14,12 +14,12 @@ const Tile = ({ widget, data }) => {
         };
         return (
           <li key={element.question_id}>
-            <p>Question:</p>
+            <p>Q: </p>
             <span>{element.question_body}</span>
             <span>
               <HelpButton widget='qa' data={element} /> | Add Answer
             </span>
-            <p>Answers:</p>
+            <p>A: </p>
             <ul>
               {Object.values(element.answers)
                 .sort((a, b) => b.helpfulness - a.helpfulness)
@@ -70,7 +70,7 @@ const Tile = ({ widget, data }) => {
                   {Object.values(element.answers)
                     .sort((a, b) => b.helpfulness - a.helpfulness)
                     .map((value, idx) => {
-                      if (idx < 10) {
+                      if (idx > 2 && idx < 10 ) {
                         const dateFormat = new Date(value.date)
                           .toDateString()
                           .slice(4, value.date.length);
