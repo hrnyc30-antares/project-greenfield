@@ -17,18 +17,20 @@ const ProductQA = () => {
 
   return (
     <div>
-      <p>Questions & Answers</p>
-        {/* <QuestionSearch onChange={handleChange}/>
-      {!filter
-        ?
-      <DefaultView />
-        :
-        <>
-        </>
-      } */}
-      <DefaultView />
-      <Button variant="contained" size="large">View More</Button>
-      <Button variant="contained" size="large">Add a Question +</Button>
+        <h3>Questions & Answers</h3>
+      <div className='qa-widget'>
+          {/* <QuestionSearch onChange={handleChange}/>
+        {!filter
+          ?
+        <DefaultView />
+          :
+          <>
+          </>
+        } */}
+        <DefaultView />
+      </div>
+        <Button variant="contained" size="large">View More</Button>
+        <Button variant="contained" size="large">Add Your Question +</Button>
     </div>
   );
 };
