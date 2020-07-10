@@ -1,8 +1,9 @@
 
 import Button from '@material-ui/core/Button';
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import DefaultView from './defaultView'
-import QuestionSearch from './QuestionSearch'
+// import QuestionSearch from './QuestionSearch';
+import AddQuestion from './QuestionModal';
 
 
 const ProductQA = () => {
@@ -12,7 +13,15 @@ const ProductQA = () => {
   //   if (state === 'list') return setshowList(bool);
   //   return setFilter(bool);
   // }
-  
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   
 
   return (
@@ -29,8 +38,9 @@ const ProductQA = () => {
         } */}
         <DefaultView />
       </div>
-        <Button variant="contained" size="large">View More</Button>
-        <Button variant="contained" size="large">Add Your Question +</Button>
+        <Button variant="contained" size="small">View More</Button>
+        <Button variant="contained" size="small" onClick={handleOpen}>Add A Question +</Button>
+        <AddQuestion open={open} handleClose={handleClose} />
     </div>
   );
 };
