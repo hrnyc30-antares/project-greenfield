@@ -400,8 +400,7 @@ button {
   }
 }
 
-
-// Beggining of Reviews Css 
+// Beggining of Reviews Css
 .ratings-wrapper {
   display: grid;
   grid-template-columns: 50fr 200fr;
@@ -434,14 +433,14 @@ button {
   display: grid;
   grid-template-columns: auto auto;
 
-  .user-and-date-wrapper{
+  .user-and-date-wrapper {
     text-align: right;
 
     .user-name {
       margin: 5px;
       display: inline;
     }
-  
+
     .review-date {
       margin: 5px;
       display: inline;
@@ -483,11 +482,10 @@ button {
     // left: 25;
   }
 }
-<<<<<<< HEAD
 
 .review-list-image {
   border: 1px solid #ddd; /* Gray border */
-  border-radius: 4px;  /* Rounded border */
+  border-radius: 4px; /* Rounded border */
   padding: 5px; /* Some padding */
   width: 100px; /* Set a small width */
   margin: 10px;
@@ -503,7 +501,7 @@ button {
   margin-top: 20px;
 
   .recommend-tag {
-    padding-top: 8px ;
+    padding-top: 8px;
   }
 }
 
@@ -517,38 +515,40 @@ button {
 .helpful-on {
   margin-top: 15px;
   font-size: 13px;
-  color: inherit; 
+  color: inherit;
 }
 
-// End of Reveiws Css 
+// End of Reveiws Css
 
-li{
+li {
   list-style-type: none;
 }
 
-.qa-widget{
+.qa-widget {
   max-height: 650px;
   overflow: auto;
 }
 
-.qa-help-answer, .qa-body{
+.qa-help-answer,
+.qa-body {
   display: flex;
   font-family: $font-serif;
 }
 
-.qa-help-answer, .qa-body{
+.qa-help-answer,
+.qa-body {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
-.qa-help-answer{
+.qa-help-answer {
   margin-right: 12px;
 }
-.q-title{
+.q-title {
   padding-left: 10px;
 }
 
-.a-title{
+.a-title {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -557,31 +557,35 @@ li{
   font-size: large;
 }
 
-.qa-title{
+.qa-title {
   display: flex;
   justify-content: space-between;
   font-size: large;
 }
 
-.answers-list, .more-list{
+.answers-list,
+.more-list {
   padding-left: 12px;
 }
-.more-list{
+.more-list {
   padding-left: 31px;
 }
 
-.a-body, .a-info, .answer-div, .more-div{
+.a-body,
+.a-info,
+.answer-div,
+.more-div {
   display: flex;
 }
-.answer-div{
+.answer-div {
   margin-top: 10px;
-  margin-bottom:15px ;
+  margin-bottom: 15px;
 }
-.a-body{
+.a-body {
   font-family: $font-serif;
   font-size: medium;
 }
-.a-info{
+.a-info {
   padding-top: 10px;
   font-family: $font-sanserif;
   opacity: 0.65;
@@ -589,49 +593,51 @@ li{
   margin-bottom: 20px;
 }
 
-
-.show-btn{
+.show-btn {
   font-size: small;
   font-family: $font-serif;
   margin-top: 10px;
   margin-bottom: 15px;
 }
 
-a.show-btn:link, a.show-btn:active, a.show-btn:visited{
+a.show-btn:link,
+a.show-btn:active,
+a.show-btn:visited {
   color: black;
 }
-a.show-btn:hover{
+a.show-btn:hover {
   color: $light-color;
 }
 
-.report-div,.help-div,.a-name{
+.report-div,
+.help-div,
+.a-name {
   padding-left: 15px;
   padding-right: 13px;
 }
-.yes-btn{
+.yes-btn {
   padding-left: 5px;
   padding-right: 2px;
 }
 
-a.yes-btn:link, a.yes-btn:active, a.yes-btn:visited{
-  color: $primary-color
+a.yes-btn:link,
+a.yes-btn:active,
+a.yes-btn:visited {
+  color: $primary-color;
 }
-a.yes-btn:hover{
-  color: $light-color
+a.yes-btn:hover {
+  color: $light-color;
 }
-a.report-btn:link, a.report-btn:active, a.report-btn:visited{
-  color: $primary-color
+a.report-btn:link,
+a.report-btn:active,
+a.report-btn:visited {
+  color: $primary-color;
 }
-a.report-btn:hover{
-  color: $light-color
+a.report-btn:hover {
+  color: $light-color;
 }
-.a-photos{
+.a-photos {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
-
-
-
-=======
->>>>>>> Update cursors; expand and zoom image; change thumbnails to indicators
