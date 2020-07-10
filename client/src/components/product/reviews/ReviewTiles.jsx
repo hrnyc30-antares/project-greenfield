@@ -5,6 +5,7 @@ import ReviewDate from '../reviews/reviewTileComponents/ReviewDate';
 import ReviewBody from '../reviews/reviewTileComponents/ReviewBody';
 import ReviewResponse from '../reviews/reviewTileComponents/ReviewResponse';
 import ReviewRecommended from '../reviews/reviewTileComponents/ReviewRecommended';
+import ReviewHelpfulness from '../reviews/reviewTileComponents/ReviewHelpfulness';
 
 const ReviewTile = ({reviews}) => {
   return (
@@ -28,10 +29,7 @@ const ReviewTile = ({reviews}) => {
       <ReviewBody body={reviews.body} images={reviews.photos}/>
       <ReviewRecommended recommendation={reviews.recommend} />
       <ReviewResponse response={reviews.response} />
-      <div className="helpful">
-        Helpful? Yes({reviews.helpfulness}) | Report
-      </div>
-
+      <ReviewHelpfulness helpfulness={reviews.helpfulness}/>
       <hr className="line-break"></hr>
   </>
   )
