@@ -114,8 +114,6 @@ button {
         cursor: zoom-in;
 
         img {
-          position: absolute;
-          left: 0;
           width: calc(100vw - 30px);
           height: auto;
         }
@@ -133,7 +131,8 @@ button {
         z-index: 1;
 
         .product-thumbnail {
-          padding: 10px 10px 0 0;
+          margin: 10px 10px 0 0;
+          width: 60px;
 
           &:focus {
             outline: unset;
@@ -144,6 +143,28 @@ button {
           width: 60px;
           height: 60px;
         }
+      }
+
+      .thumb-up-arrow,
+      .thumb-down-arrow {
+        display: none;
+        background-color: $icon-background;
+        border-radius: 50%;
+        margin: 10px 10px 0 0;
+        justify-self: center;
+        z-index: 1;
+      }
+
+      .product-image-before {
+        display: none;
+      }
+
+      .product-image-next {
+        display: none;
+      }
+
+      .product-image-zoom {
+        display: none;
       }
 
       .product-image-mobile {
@@ -282,6 +303,7 @@ button {
         margin-right: 20px;
         margin-bottom: 0;
         width: 57%;
+        min-height: 560px;
         // ...
         display: grid;
         grid-template-columns: 20px 70px 20px auto 20px 25px;
@@ -303,9 +325,18 @@ button {
           }
         }
 
+        .thumb-up-arrow {
+          display: block;
+        }
+
+        .thumb-down-arrow {
+          display: block;
+        }
+
         .product-image-thumbnails {
           display: flex;
           flex-direction: column;
+          align-items: center;
           grid-column: 2;
           grid-row-start: 2;
           grid-row-end: 6;
@@ -316,6 +347,7 @@ button {
         }
 
         .product-image-zoom {
+          display: block;
           grid-row: 1;
           grid-column: 6;
           z-index: 1;
@@ -323,6 +355,7 @@ button {
         }
 
         .product-image-before {
+          display: block;
           grid-row: 3;
           grid-column: 3;
           z-index: 1;
@@ -331,6 +364,7 @@ button {
         }
 
         .product-image-next {
+          display: block;
           grid-row: 3;
           grid-column: 5;
           z-index: 1;
@@ -548,7 +582,7 @@ button {
   appearance: none;
   width: 4px;
   height: 10px;
-  background:$primary-color;
+  background: $primary-color;
   cursor: pointer;
 }
 
