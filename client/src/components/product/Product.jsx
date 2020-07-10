@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ProductQA from './Q-A/ProductQA'
+import ProductQA from './Q-A/ProductQA';
 import Overview from './overview/Overview';
 import { fetchProduct } from '../../redux/actions/productActions';
 import { fetchStyles } from '../../redux/actions/stylesActions';
 import { fetchAnswers } from '../../redux/actions/answersActions';
-import {fetchQuestions} from '../../redux/actions/questionActions';
+import { fetchQuestions } from '../../redux/actions/questionActions';
 import { fetchReviews } from '../../redux/actions/reviewActions';
 import { fetchReviewsMeta } from '../../redux/actions/ratingActions';
 
