@@ -114,8 +114,6 @@ button {
         cursor: zoom-in;
 
         img {
-          position: absolute;
-          left: 0;
           width: calc(100vw - 30px);
           height: auto;
         }
@@ -152,8 +150,21 @@ button {
         display: none;
         background-color: $icon-background;
         border-radius: 50%;
+        margin: 10px 10px 0 0;
         justify-self: center;
         z-index: 1;
+      }
+
+      .product-image-before {
+        display: none;
+      }
+
+      .product-image-next {
+        display: none;
+      }
+
+      .product-image-zoom {
+        display: none;
       }
 
       .product-image-mobile {
@@ -316,19 +327,16 @@ button {
 
         .thumb-up-arrow {
           display: block;
-          grid-column: 2;
-          grid-row: 1;
         }
 
         .thumb-down-arrow {
           display: block;
-          grid-column: 2;
-          grid-row: 5;
         }
 
         .product-image-thumbnails {
           display: flex;
           flex-direction: column;
+          align-items: center;
           grid-column: 2;
           grid-row-start: 2;
           grid-row-end: 6;
@@ -339,6 +347,7 @@ button {
         }
 
         .product-image-zoom {
+          display: block;
           grid-row: 1;
           grid-column: 6;
           z-index: 1;
@@ -346,6 +355,7 @@ button {
         }
 
         .product-image-before {
+          display: block;
           grid-row: 3;
           grid-column: 3;
           z-index: 1;
@@ -354,6 +364,7 @@ button {
         }
 
         .product-image-next {
+          display: block;
           grid-row: 3;
           grid-column: 5;
           z-index: 1;
@@ -571,7 +582,7 @@ button {
   appearance: none;
   width: 4px;
   height: 10px;
-  background:$primary-color;
+  background: $primary-color;
   cursor: pointer;
 }
 

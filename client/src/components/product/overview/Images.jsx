@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -21,19 +21,24 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
   const [zoomed, setZoomed] = useState(false);
   const [thumbStartIndex, setThumbStartIndex] = useState(0);
   const [thumbEndIndex, setThumbEndIndex] = useState(
-    currentStyle.photos.length > 7 ? 7 : currentStyle.photos.length
+    currentStyle.photos.length > 7 ? 6 : currentStyle.photos.length - 1
   );
 
+  console.log(thumbEndIndex);
+
   const renderThumbnails = () => {
-    let i;
     const thumbsArray = [],
       urls = currentStyle.photos;
-    for (i = 0; i < thumbEndIndex; i++) {
+    for (let i = thumbStartIndex; i <= thumbEndIndex; i += 1) {
+      //urls.map((url, i))
       thumbsArray.push(
         <button
           type="button"
           className="product-thumbnail"
-          onClick={() => setCurrentPhotoIndex(i)}
+          onClick={() => {
+            console.log('i ', i);
+            setCurrentPhotoIndex(i);
+          }}
           key={urls[i].url}
         >
           <img
@@ -59,6 +64,15 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
         onClick={() => setCurrentPhotoIndex(i)}
       />
     ));
+
+  useEffect(() => {
+    if (currentPhotoIndex < thumbStartIndex) {
+      decrementThumbIndex();
+    }
+    if (currentPhotoIndex > thumbEndIndex) {
+      incrementThumbIndex();
+    }
+  }, [currentPhotoIndex]);
 
   const handleTouchStart = (e) => {
     setClientX(e.touches[0].clientX);
@@ -100,23 +114,53 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
     setExpanded(true);
   };
 
+  const incrementThumbIndex = () => {
+    setThumbStartIndex(thumbStartIndex + 1);
+    setThumbEndIndex(thumbEndIndex + 1);
+  };
+
+  const decrementThumbIndex = () => {
+    setThumbStartIndex(thumbStartIndex - 1);
+    setThumbEndIndex(thumbEndIndex - 1);
+  };
+
+  const incrementPhotoIndex = () => {
+    setCurrentPhotoIndex(currentPhotoIndex + 1);
+  };
+
+  const decrementPhotoIndex = () => {
+    setCurrentPhotoIndex(currentPhotoIndex - 1);
+  };
+
   return (
     <div
       className={`product-media ${expanded ? 'expanded' : ''} ${
         zoomed ? 'zoomed' : ''
       }`}
     >
-      {thumbStartIndex > 0 && <ExpandLess className="thumb-up-arrow" />}
-      <div className="product-image-thumbnails">{renderThumbnails()}</div>
-      {thumbEndIndex < currentStyle.photos.length - 2 && (
-        <ExpandMore className="thumb-down-arrow" />
-      )}
+      <div className="product-image-thumbnails">
+        {thumbStartIndex > 0 && (
+          <ExpandLess
+            className="thumb-up-arrow"
+            color="primary"
+            onClick={decrementThumbIndex}
+          />
+        )}
+        {renderThumbnails()}
+        {thumbEndIndex < currentStyle.photos.length - 1 && (
+          <ExpandMore
+            className="thumb-down-arrow"
+            color="primary"
+            onClick={incrementThumbIndex}
+          />
+        )}
+      </div>
       {currentPhotoIndex > 0 && (
         <NavigateBefore
           className="product-image-before"
           fontSize="large"
           color="primary"
-          onClick={() => setCurrentPhotoIndex(currentPhotoIndex - 1)}
+          onClick={decrementPhotoIndex}
         />
       )}
       <button
@@ -137,12 +181,12 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
         />
       </button>
       {currentStyle.photos.length > 1 &&
-        currentPhotoIndex - 1 < currentStyle.photos.length && (
+        currentPhotoIndex < currentStyle.photos.length - 1 && (
           <NavigateNext
             className="product-image-next"
             fontSize="large"
             color="primary"
-            onClick={() => setCurrentPhotoIndex(currentPhotoIndex + 1)}
+            onClick={incrementPhotoIndex}
           />
         )}
       <Fullscreen
