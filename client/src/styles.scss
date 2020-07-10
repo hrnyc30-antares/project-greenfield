@@ -256,6 +256,19 @@ button {
         display: flex;
         justify-content: space-evenly;
       }
+
+      .ratings-wrapper {
+        .average-rating {
+          display: none;
+        }
+        .average-rating-stars {
+          fieldset {
+            padding-left: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 
@@ -732,6 +745,3 @@ a.report-btn:hover {
   justify-content: flex-start;
   align-items: flex-start;
 }
-
-
-
