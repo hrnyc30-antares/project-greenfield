@@ -31,14 +31,11 @@ const HelpButton = ({ widget, data, update, id, clicked, helpIds }) => {
     }
   };
   return (
-    <p>
+    <div className='help-div'>
       Helpful?
-      <a href='' onClick={handleClick}>
-        {' '}
-        Yes{' '}
-      </a>{' '}
+      <a href='' onClick={handleClick} className='yes-btn'> Yes</a>
       ({data.question_helpfulness || data.helpfulness})
-    </p>
+    </div>
   );
 };
 

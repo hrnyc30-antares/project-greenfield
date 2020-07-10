@@ -434,3 +434,112 @@ button {
     // left: 25;
   }
 }
+
+li{
+  list-style-type: none;
+}
+
+.qa-widget{
+  max-height: 650px;
+  overflow: auto;
+}
+
+.qa-help-answer, .qa-body{
+  display: flex;
+  font-family: $font-serif;
+}
+
+.qa-help-answer, .qa-body{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.qa-help-answer{
+  margin-right: 12px;
+}
+.q-title{
+  padding-left: 10px;
+}
+
+.a-title{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 20px;
+  font-family: $font-serif;
+  font-size: large;
+}
+
+.qa-title{
+  display: flex;
+  justify-content: space-between;
+  font-size: large;
+}
+
+.answers-list, .more-list{
+  padding-left: 12px;
+}
+.more-list{
+  padding-left: 31px;
+}
+
+.a-body, .a-info, .answer-div, .more-div{
+  display: flex;
+}
+.answer-div{
+  margin-top: 10px;
+  margin-bottom:15px ;
+}
+.a-body{
+  font-family: $font-serif;
+  font-size: medium;
+}
+.a-info{
+  padding-top: 10px;
+  font-family: $font-sanserif;
+  opacity: 0.65;
+  font-size: smaller;
+  margin-bottom: 20px;
+}
+
+
+.show-btn{
+  font-size: small;
+  font-family: $font-serif;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+a.show-btn:link, a.show-btn:active, a.show-btn:visited{
+  color: black;
+}
+a.show-btn:hover{
+  color: $light-color;
+}
+
+.report-div,.help-div,.a-name{
+  padding-left: 15px;
+  padding-right: 13px;
+}
+.yes-btn{
+  padding-left: 5px;
+  padding-right: 2px;
+}
+
+a.yes-btn:link, a.yes-btn:active, a.yes-btn:visited{
+  color: $primary-color
+}
+a.yes-btn:hover{
+  color: $light-color
+}
+a.report-btn:link, a.report-btn:active, a.report-btn:visited{
+  color: $primary-color
+}
+a.report-btn:hover{
+  color: $light-color
+}
+.a-photos{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

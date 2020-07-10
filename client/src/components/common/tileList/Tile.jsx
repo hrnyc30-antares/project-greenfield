@@ -13,14 +13,16 @@ const Tile = ({ widget, data }) => {
           return setShowMore(true);
         };
         return (
-          <li key={element.question_id}>
-            <p>Q: </p>
-            <span>{element.question_body}</span>
-            <span>
-              <HelpButton widget='qa' data={element} /> | Add Answer
-            </span>
-            <p>A: </p>
-            <ul>
+          <li key={element.question_id}> 
+          <div className='qa-title'>
+            <div className='qa-body'>Q: <div className='q-title'><strong>{element.question_body}</strong></div></div>
+            <div className='qa-help-answer'>
+              <HelpButton widget='qa' data={element} />|Add Answer
+            </div>
+          </div>
+          <div className='answer-div'>
+            <div className='a-title'>A: </div>
+            <ul className='answers-list'>
               {Object.values(element.answers)
                 .sort((a, b) => b.helpfulness - a.helpfulness)
                 .map((value, idx) => {
@@ -29,9 +31,9 @@ const Tile = ({ widget, data }) => {
                       .toDateString()
                       .slice(4, value.date.length);
                     return (
-                      <li key={value.id}>
-                        <span>{value.body}</span>
-                        <span>
+                      <li key={value.id} className='answer'>
+                        <div className='a-body'>{value.body}</div>
+                        <div className='a-info'>
                           {value.photos.length > 1 ? (
                             value.photos.map((el, index) => {
                               return (
@@ -41,32 +43,36 @@ const Tile = ({ widget, data }) => {
                                   key={index + Math.random() * 86}
                                   width='150px'
                                   height='150px'
+                                  className='a-photos'
                                 />
                               );
                             })
                           ) : (
                             <></>
                           )}
-                          <p>
-                            {' '}
-                            by {value.answerer_name}, {dateFormat}
-                          </p>{' '}
-                          | <HelpButton widget='answer' data={value} /> |{' '}
+                            <div className='a-name'>
+                            by {value.answerer_name},   {dateFormat}
+                            
+                            </div>
+                            |
+                          <HelpButton widget='answer' data={value} /> |
                           <ReportButton widget='answer' data={value} />
-                        </span>
+                        </div>
                       </li>
                     );
                   }
                 })}
             </ul>
-            <div>
+          </div>
+            <div className='more-div'>
               {Object.values(element.answers).length > 2 && !showMore ? (
-                <a href='' onClick={handleChange}>
-                  {' '}
+                <a href='' onClick={handleChange} className='show-btn'>
+                 <strong>
                   Show More Answers
+                 </strong>
                 </a>
               ) : (
-                <ul>
+                <ul className='more-list'>
                   {Object.values(element.answers)
                     .sort((a, b) => b.helpfulness - a.helpfulness)
                     .map((value, idx) => {
@@ -75,9 +81,9 @@ const Tile = ({ widget, data }) => {
                           .toDateString()
                           .slice(4, value.date.length);
                         return (
-                          <li key={value.id}>
-                            <span>{value.body}</span>
-                            <span>
+                          <li key={value.id}className='answer' >
+                            <div className='a-body'>{value.body}</div>
+                            <div className='a-info'>
                               {value.photos.length > 1 ? (
                                 value.photos.map((el, index) => {
                                   return (
@@ -87,19 +93,20 @@ const Tile = ({ widget, data }) => {
                                       key={index + Math.random() * 86}
                                       width='150px'
                                       height='150px'
+                                      className='a-photos'
                                     />
                                   );
                                 })
                               ) : (
                                 <></>
                               )}
-                              <p>
-                                {' '}
-                                by {value.answerer_name}, {dateFormat}
-                              </p>{' '}
-                              | <HelpButton widget='answer' data={value} /> |{' '}
+                              <div className='a-name'>
+                            by {value.answerer_name},   {dateFormat}
+                            
+                            </div>
+                              | <HelpButton widget='answer' data={value} /> |
                               <ReportButton widget='answer' data={value} />
-                            </span>
+                            </div>
                           </li>
                         );
                       }
@@ -110,9 +117,6 @@ const Tile = ({ widget, data }) => {
           </li>
         );
       });
-    }
-    if (widget === 'reviews') {
-      console.log(data);
     }
   };
   return <ul>{renderTile()}</ul>;

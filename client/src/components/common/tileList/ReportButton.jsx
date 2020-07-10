@@ -14,10 +14,10 @@ const ReportButton = ({ widget, data }) => {
     }
   };
   return (
-    <div>
+    <div className='report-div'>
       {!clicked
       ? 
-          <a href="" onClick={handleClick}>Report</a>
+          <a href="" onClick={handleClick} className='report-btn'>Report</a>
           :
           <p>Reported</p>
     }
