@@ -30,7 +30,7 @@ const ProductQA = () => {
         <DefaultView />
       </div>
         <Button variant="contained" size="large">View More</Button>
-        <Button variant="contained" size="large">Add Your Question +</Button>
+        <Button variant="contained" size="large">Add A Question +</Button>
     </div>
   );
 };
