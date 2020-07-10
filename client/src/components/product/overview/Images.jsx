@@ -11,6 +11,7 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
   const [leftPosition, setLeftPosition] = useState(0);
   const [clientX, setClientX] = useState(0);
   const [deltaX, setDeltaX] = useState(0);
+  const [expanded, setExpanded] = useState(false);
   const [zoomed, setZoomed] = useState(false);
   const [thumbStartIndex, setThumbStartIndex] = useState(0);
   const [thumbEndIndex, setThumbEndIndex] = useState(0);
@@ -70,12 +71,27 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
     setLeftPosition(0);
   };
 
-  const toggleZoom = () => {
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
+  const toggleZoomed = () => {
     setZoomed(!zoomed);
   };
 
+  const handleImageClick = () => {
+    if (expanded) {
+      toggleZoomed();
+    }
+    setExpanded(true);
+  };
+
   return (
-    <div className={zoomed ? 'product-media expanded' : 'product-media'}>
+    <div
+      className={`product-media ${expanded ? 'expanded' : ''} ${
+        zoomed ? 'zoomed' : ''
+      }`}
+    >
       <div className="product-image-thumbnails">{renderThumbnails()}</div>
       {currentPhotoIndex > 0 && (
         <NavigateBefore
@@ -85,7 +101,11 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
           onClick={() => setCurrentPhotoIndex(currentPhotoIndex - 1)}
         />
       )}
-      <div className="product-image">
+      <button
+        type="button"
+        className="product-image"
+        onClick={handleImageClick}
+      >
         <img
           src={
             currentStyle.photos[currentPhotoIndex].url ||
@@ -97,7 +117,7 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
           onTouchEnd={() => handleTouchEnd()}
           style={{ left: leftPosition }}
         />
-      </div>
+      </button>
       {currentPhotoIndex - 1 < currentStyle.photos.length && (
         <NavigateNext
           className="product-image-next"
@@ -109,7 +129,7 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
       <Fullscreen
         color="primary"
         className="product-image-zoom"
-        onClick={toggleZoom}
+        onClick={toggleExpanded}
       />
       <ol className="product-image-mobile">{renderDots()}</ol>
     </div>
