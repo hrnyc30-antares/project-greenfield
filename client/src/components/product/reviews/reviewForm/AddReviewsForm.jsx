@@ -196,3 +196,9 @@ This is an example of product 4 Meta:
    "characteristics": {"3":5, "2":5, "5":5}
  }
  */
+
+
+ // reccomned needs to be boolean 
+ // photos can be empty
+ // email needs to be have .com
+ // use !! (bang bang) to turn a true false string into actual boolean
