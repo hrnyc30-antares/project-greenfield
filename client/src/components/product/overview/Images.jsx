@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Fullscreen, NavigateBefore, NavigateNext } from '@material-ui/icons';
+import {
+  Fullscreen,
+  NavigateBefore,
+  NavigateNext,
+  ExpandLess,
+  ExpandMore,
+} from '@material-ui/icons';
 
 const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
   if (loading) return <p>Loading product...</p>;
@@ -14,28 +20,41 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
   const [expanded, setExpanded] = useState(false);
   const [zoomed, setZoomed] = useState(false);
   const [thumbStartIndex, setThumbStartIndex] = useState(0);
-  const [thumbEndIndex, setThumbEndIndex] = useState(0);
+  const [thumbEndIndex, setThumbEndIndex] = useState(
+    currentStyle.photos.length > 7 ? 6 : currentStyle.photos.length - 1
+  );
 
-  console.log('currentPhotoIndex: ', currentPhotoIndex);
+  console.log(thumbEndIndex);
 
-  const renderThumbnails = () =>
-    currentStyle.photos.map((urls, i) => (
-      <button
-        type="button"
-        className="product-thumbnail"
-        onClick={() => setCurrentPhotoIndex(i)}
-        key={urls.url}
-      >
-        <img
-          className={i === currentPhotoIndex ? 'selected' : ''}
-          src={
-            urls.thumbnail_url ||
-            'https://edtmlv.pbworks.com/f/1450761659/media-6466-w700-q100%5B1%5D.jpg'
-          }
-          alt={`Product Thumbnail${i}`}
-        />
-      </button>
-    ));
+  const renderThumbnails = () => {
+    const thumbsArray = [],
+      urls = currentStyle.photos;
+    for (let i = thumbStartIndex; i <= thumbEndIndex; i += 1) {
+      //urls.map((url, i))
+      thumbsArray.push(
+        <button
+          type="button"
+          className="product-thumbnail"
+          onClick={() => {
+            console.log('i ', i);
+            setCurrentPhotoIndex(i);
+          }}
+          key={urls[i].url}
+        >
+          <img
+            className={i === currentPhotoIndex ? 'selected' : ''}
+            src={
+              urls[i].thumbnail_url ||
+              'https://edtmlv.pbworks.com/f/1450761659/media-6466-w700-q100%5B1%5D.jpg'
+            }
+            alt={`Product Thumbnail${i}`}
+          />
+        </button>
+      );
+    }
+
+    return thumbsArray;
+  };
 
   const renderDots = () =>
     currentStyle.photos.map((urls, i) => (
@@ -45,6 +64,15 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
         onClick={() => setCurrentPhotoIndex(i)}
       />
     ));
+
+  useEffect(() => {
+    if (currentPhotoIndex < thumbStartIndex) {
+      decrementThumbIndex();
+    }
+    if (currentPhotoIndex > thumbEndIndex) {
+      incrementThumbIndex();
+    }
+  }, [currentPhotoIndex]);
 
   const handleTouchStart = (e) => {
     setClientX(e.touches[0].clientX);
@@ -86,19 +114,53 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
     setExpanded(true);
   };
 
+  const incrementThumbIndex = () => {
+    setThumbStartIndex(thumbStartIndex + 1);
+    setThumbEndIndex(thumbEndIndex + 1);
+  };
+
+  const decrementThumbIndex = () => {
+    setThumbStartIndex(thumbStartIndex - 1);
+    setThumbEndIndex(thumbEndIndex - 1);
+  };
+
+  const incrementPhotoIndex = () => {
+    setCurrentPhotoIndex(currentPhotoIndex + 1);
+  };
+
+  const decrementPhotoIndex = () => {
+    setCurrentPhotoIndex(currentPhotoIndex - 1);
+  };
+
   return (
     <div
       className={`product-media ${expanded ? 'expanded' : ''} ${
         zoomed ? 'zoomed' : ''
       }`}
     >
-      <div className="product-image-thumbnails">{renderThumbnails()}</div>
+      <div className="product-image-thumbnails">
+        {thumbStartIndex > 0 && (
+          <ExpandLess
+            className="thumb-up-arrow"
+            color="primary"
+            onClick={decrementThumbIndex}
+          />
+        )}
+        {renderThumbnails()}
+        {thumbEndIndex < currentStyle.photos.length - 1 && (
+          <ExpandMore
+            className="thumb-down-arrow"
+            color="primary"
+            onClick={incrementThumbIndex}
+          />
+        )}
+      </div>
       {currentPhotoIndex > 0 && (
         <NavigateBefore
           className="product-image-before"
           fontSize="large"
           color="primary"
-          onClick={() => setCurrentPhotoIndex(currentPhotoIndex - 1)}
+          onClick={decrementPhotoIndex}
         />
       )}
       <button
@@ -118,14 +180,15 @@ const Images = ({ dispatch, loading, currentStyle, product, hasErrors }) => {
           style={{ left: leftPosition }}
         />
       </button>
-      {currentPhotoIndex - 1 < currentStyle.photos.length && (
-        <NavigateNext
-          className="product-image-next"
-          fontSize="large"
-          color="primary"
-          onClick={() => setCurrentPhotoIndex(currentPhotoIndex + 1)}
-        />
-      )}
+      {currentStyle.photos.length > 1 &&
+        currentPhotoIndex < currentStyle.photos.length - 1 && (
+          <NavigateNext
+            className="product-image-next"
+            fontSize="large"
+            color="primary"
+            onClick={incrementPhotoIndex}
+          />
+        )}
       <Fullscreen
         color="primary"
         className="product-image-zoom"
