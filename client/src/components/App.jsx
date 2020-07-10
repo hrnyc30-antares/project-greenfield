@@ -71,6 +71,7 @@ const App = () => (
     <div>
       <Switch>
         <Route path="/product/:id" component={Product} />
+        <Route path="/products/:page" component={Products} />
         <Route path="/products" component={Products} />
         <Route path="/">
           <h1>Home</h1>

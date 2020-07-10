@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchProducts } from '../redux/actions/productsActions';
 
 const Products = ({ dispatch, loading, products, hasErrors }) => {
+  let { page } = useParams();
+  page = page || 1;
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(page));
   }, [dispatch]);
 
   const renderProducts = () => {
@@ -25,7 +27,7 @@ const Products = ({ dispatch, loading, products, hasErrors }) => {
   return (
     <div>
       <h1>Products</h1>
-      {renderProducts()}
+      <div className="product-list">{renderProducts()}</div>
     </div>
   );
 };

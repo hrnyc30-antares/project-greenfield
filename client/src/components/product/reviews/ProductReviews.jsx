@@ -6,7 +6,7 @@ import reviews from '../../../redux/reducers/reviews';
 import ProductRatings from './ProductRatings';
 import ReviewsSort from './ReviewsSort';
 
-const ProductReviews = ({ dispatch, loading, reviews, hasErrors, reviewsResultCount}) => {
+const ProductReviews = ({ dispatch, loading, reviews, hasErrors, reviewsResultCount, meta}) => {
 
   const renderReviews = () => {
     // if (loading) return <p>Loading posts...</p>;
@@ -25,7 +25,7 @@ const ProductReviews = ({ dispatch, loading, reviews, hasErrors, reviewsResultCo
         <ProductRatings/>
       </div>
       <div>
-        <ReviewsSort />
+        <ReviewsSort metaRatings={meta.ratings}/>
         {renderReviews()}
       </div>
     </div>
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => ({
   hasErrors: state.reviews.hasErrors,
   errors: state.reviews.errors,
   reviewsResultCount: state.reviews.reviewsResultCount,
-  //product: state.product.product,
+  meta: state.ratings.meta,
 })
 
 export default connect(mapStateToProps)(ProductReviews);

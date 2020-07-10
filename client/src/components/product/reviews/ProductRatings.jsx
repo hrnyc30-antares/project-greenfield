@@ -7,6 +7,7 @@ import ratings from '../../../redux/reducers/ratings';
 import { getAverage, percentOfWhole, totalRatings } from './ReviewHelpers';
 import StarRatings from './StarRatings';
 import RatingsBars from './RatingsBars';
+import RatingsCharacteristicsBar from './RatingsCharacteristicsBar';
 
 const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
 
@@ -40,6 +41,7 @@ const ProductRatings = ({dispatch, meta, hasErrors, loading, errors}) => {
         {ratingsPercentage.map((percentage, i) => {
           return (<RatingsBars value={percentage} rating={5 - i} key={i}/>)
         })}
+        <RatingsCharacteristicsBar chars={meta.characteristics}/>
       </>
     )
   }
