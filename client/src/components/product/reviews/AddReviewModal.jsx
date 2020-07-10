@@ -46,12 +46,12 @@ const AddReviewModal = ({handleClose, open, product}) => {
                 style={{display:'flex',alignItems:'center',justifyContent:'center', overflow: 'scroll'}}
         >
           <div style={modalStyle} className={classes.paper}>
-            <h2>Write Your Review</h2>
+            {/* <h2>Write Your Review</h2>
             <h3>
               About the
               { ` ${product.name}` }
-            </h3>
-            <AddReviewsForm/>
+            </h3> */}
+            <AddReviewsForm name={product.name}/>
           </div>
         </Modal>
     </>

@@ -17,9 +17,9 @@ export const getProductsFailure = () => ({
   type: GET_PRODUCTS_FAILURE,
 });
 
-export const fetchProducts = () => (dispatch) => {
+export const fetchProducts = (page) => (dispatch) => {
   dispatch(getProducts());
-  fetch('http://18.224.200.47/products/list')
+  fetch(`http://18.224.200.47/products/list?page=${page}&count=100`)
     .then((res) => res.json())
     .then((data) => dispatch(getProductsSuccess(data)))
     .catch((err) => dispatch(getProductsFailure()));
