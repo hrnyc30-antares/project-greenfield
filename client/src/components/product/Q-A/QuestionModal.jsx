@@ -37,7 +37,6 @@ const AddQuestion = ({ open, handleClose, name, id, update }) => {
     if(question.length < 1 ) setQuestErr(true)
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(!re.test(String(email).toLowerCase()) || email.length < 1) setEmailErr(true)
-    console.log(emailErr, nameErr, questErr)
   })
   
   const handleClick = (e) => {
