@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchReviews, updateReviewSort } from '../../../redux/actions/reviewActions';
 
-const ReviewsSort = ({dispatch, sort, reviewsResultCount}) => {
+const ReviewsSort = ({dispatch, sort, reviewsResultCount, metaRatings}) => {
   const [name, setName] = useState('relevance');
   const { id } = useParams();
   // useEffect(() => {
@@ -29,10 +29,19 @@ const ReviewsSort = ({dispatch, sort, reviewsResultCount}) => {
     dispatch(updateReviewSort(event.target.value));
   };
 
+  const getTotalReviews = (ratings) => {
+    if (ratings != null || ratings !== undefined) {
+      return Object.keys(ratings).reduce((accum, curr) => {
+        return accum += ratings[curr]
+      }, 0);
+    }
+    return '#'
+  }
+
   return (
     <div className="reviews-sort">
       <div className="reviews-sort-text">
-        # reviews, sorted by
+        {getTotalReviews(metaRatings)} reviews, sorted by
         </div>
       <div className="reviews-sort-form">
       <FormControl className={classes.formControl}>
