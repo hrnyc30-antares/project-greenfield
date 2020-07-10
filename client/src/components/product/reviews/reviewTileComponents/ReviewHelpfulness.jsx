@@ -33,9 +33,9 @@ const ReviewHelpfulness = ({helpfulness}) => {
   return (
     <>
       <div className={disable}>
-        {`Helpful ? Yes( `}
-          <a className={disable} value={1} onClick={handleClick} href="">{helpfulCount}</a>
-        {` )`}
+        {`Helpful ?   `}
+          <a className={disable} value={1} onClick={handleClick} href="">Yes</a>
+        {`   ( ${helpfulCount} )`}
     </div>
     </>
   )
