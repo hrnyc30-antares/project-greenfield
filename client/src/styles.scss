@@ -413,11 +413,6 @@ button {
   padding: 0;
 }
 
-.helpful {
-  margin-top: 15px;
-  font-size: 12px;
-}
-
 .list-buttons-wrapper {
   margin: auto;
   text-align: center;
@@ -465,3 +460,16 @@ button {
     padding-top: 8px ;
   }
 }
+
+.helpful-off {
+  color: grey;
+  pointer-events: none;
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.helpful-on {
+  margin-top: 15px;
+  font-size: 12px;
+}
+
