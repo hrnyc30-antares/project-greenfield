@@ -101,12 +101,17 @@ button {
         width: calc(100vw - 20px);
         height: 500px;
         overflow: hidden;
+        cursor: zoom-in;
 
         img {
           position: absolute;
           left: 0;
           width: calc(100vw - 30px);
           height: auto;
+        }
+
+        &:focus {
+          outline: unset;
         }
       }
 
@@ -139,6 +144,7 @@ button {
         li {
           background-color: transparent;
           border: 1px solid $primary-color;
+          background-color: $icon-background;
           border-radius: 0.5rem;
           cursor: pointer;
           -ms-flex: 0 0 auto;
@@ -332,6 +338,43 @@ button {
           + .product-info-main {
             display: none;
           }
+
+          .product-image {
+            cursor: crosshair;
+          }
+
+          .product-image-thumbnails {
+            display: none;
+          }
+
+          .product-image-mobile {
+            display: flex;
+            position: absolute;
+            bottom: 10px;
+            right: 50%;
+            border-radius: 30%;
+          }
+
+          .product-image-before {
+            grid-column: 2;
+          }
+
+          &.zoomed {
+            .product-image {
+              cursor: url('assets/16_16.png'), zoom-out;
+              overflow: hidden;
+
+              img {
+                transform: scale(2.5);
+              }
+            }
+
+            .product-image-mobile,
+            .product-image-before,
+            .product-image-after {
+              display: none;
+            }
+          }
         }
       }
 
@@ -440,6 +483,7 @@ button {
     // left: 25;
   }
 }
+<<<<<<< HEAD
 
 .review-list-image {
   border: 1px solid #ddd; /* Gray border */
@@ -589,3 +633,5 @@ a.report-btn:hover{
 
 
 
+=======
+>>>>>>> Update cursors; expand and zoom image; change thumbnails to indicators
