@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Tile from '../../Common/tileList/Tile';
+import Tile from '../../common/tileList/Tile';
 import { setHelpful } from '../../../redux/actions/helpfulAction';
 
 const DefaultView = ({
