@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import FormControl from '@material-ui/core/FormControl';
@@ -75,6 +75,9 @@ const App = () => (
         <Route path="/products" component={Products} />
         <Route path="/">
           <h1>Home</h1>
+          <section>
+            <Link to="/products">View Products</Link>
+          </section>
         </Route>
       </Switch>
     </div>
