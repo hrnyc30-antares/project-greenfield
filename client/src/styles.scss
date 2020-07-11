@@ -455,6 +455,16 @@ button {
       grid-template-columns: 300fr 700fr;
     }
   }
+
+  .qa-widget {
+    .qa-body {
+      max-width: 69%;
+    }
+
+    .qa-help-answer {
+      margin-top: 0;
+    }
+  }
 }
 
 // Beggining of Reviews Css
@@ -635,18 +645,15 @@ li {
 
 .qa-help-answer,
 .qa-body {
-  display: flex;
   font-family: $font-serif;
-}
-
-.qa-help-answer,
-.qa-body {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  font-size: 1.1rem;
+  opacity: 0.65;
 }
 .qa-help-answer {
-  margin-right: 12px;
+  margin-top: 12px;
+  font-family: $font-sanserif;
+  font-size: 0.9rem;
 }
 .q-title {
   padding-left: 10px;
@@ -658,13 +665,13 @@ li {
   align-items: flex-start;
   max-width: 20px;
   font-family: $font-serif;
-  font-size: large;
+  font-size: 1.1rem;
 }
 
 .qa-title {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  font-size: large;
 }
 
 .answers-list,
@@ -693,7 +700,7 @@ li {
   padding-top: 10px;
   font-family: $font-sanserif;
   opacity: 0.65;
-  font-size: smaller;
+  font-size: 0.9rem;
   margin-bottom: 20px;
 }
 
